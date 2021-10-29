@@ -1,7 +1,11 @@
-// import { Mutation } from './Mutation';
+import { AuthPayload } from './AuthPayload';
+import { Message } from './Message';
+import { Mutation } from './Mutation';
 import { Query } from './Query';
 
 export default [
-  // Mutation,
+  Mutation,
   Query,
+  AuthPayload,
+  Message
 ];

@@ -1,9 +1,10 @@
 import express from 'express';
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
 import { typeDefs } from './graphql/typeDefs';
 
-import { Query } from './resolvers/index';
+import { Query, Mutation } from './resolvers/index';
+import { PrismaClient } from '.prisma/client';
 
 dotenv.config();
 
@@ -19,8 +20,8 @@ async function startServer(){
    */
   const apolloServer = new ApolloServer({
     typeDefs,
-    resolvers: { Query }
-    }
+    resolvers: { Query, Mutation },
+    },
   );
 
   await apolloServer.start();
@@ -29,14 +30,14 @@ async function startServer(){
     app, 
     cors: {
       credentials: true,
-      // Target front-end in a near the future
+      // Target front-end in production
       origin: '*',
     }});
     
   app.use((req, res) => {
     res.send('Hello from express apollo server');
-  })
-  app.listen(PORT, () => console.log("Server is running on port 4000"));
-};
+  });
+  app.listen(PORT, () => console.log('Server is running on port 4000'));
+}
 
 startServer();
