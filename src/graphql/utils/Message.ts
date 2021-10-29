@@ -1,5 +1,5 @@
 export const Message = `
-type Message{
+type Message {
   message: String!
 }
 `;
