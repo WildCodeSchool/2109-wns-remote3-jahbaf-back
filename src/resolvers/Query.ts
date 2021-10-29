@@ -1,3 +1,3 @@
-import { hello } from "./hello/hello";
+import { hello } from './hello/hello';
 
 export default { hello };
