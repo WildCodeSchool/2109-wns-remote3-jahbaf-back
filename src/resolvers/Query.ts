@@ -1,3 +1,1 @@
-import { hello } from './hello/hello';
-
-export default { hello };
+export * from './hello/hello.query';

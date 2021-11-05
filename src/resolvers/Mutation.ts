@@ -1,3 +1,1 @@
-import { signup } from './authentication/signup';
-
-export default { signup };
+export * from './authentication/signup.mutation';
