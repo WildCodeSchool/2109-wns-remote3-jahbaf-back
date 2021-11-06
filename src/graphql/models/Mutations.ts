@@ -3,7 +3,7 @@
  *  Exemple: 
  *  signup(email: String, password: String) AuthMessage!
  *  createOneTask(title: String!, description: String!, priority: String!, points: Int): Message!
- */ 
+ */
 export const Mutation = `
   type Mutation {
     signup(name: String, email: String, password: String): AuthPayload!
