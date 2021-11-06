@@ -6,6 +6,8 @@ Front end developers needs to know what has been built, this documentation exist
 
 ## Documentation url
 
+[https://wildcodeschool.github.io/2109-wns-remote3-jahbaf-back/index.html](https://wildcodeschool.github.io/2109-wns-remote3-jahbaf-back/index.html)
+
 ## How to update
 
 Resolvers are sorted by categories, please follow the following pattern when adding a resolver
