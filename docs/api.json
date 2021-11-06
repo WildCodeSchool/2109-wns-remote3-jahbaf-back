@@ -1,0 +1,25 @@
+{
+    "authentication": {
+        "signIn": {
+            "type": "Query",
+            "description": "Create an account for the user",
+            "usage": "signIn(email: $email, password: $password)",
+            "returns": "{ user: User, token: String }",
+            "exceptions": [
+                {
+                    "name": "InvalidEmailException",
+                    "description": "The email entered by the user is not valid",
+                    "code": 1002
+                },
+                {
+                    "name": "InvalidEmailException",
+                    "description": "The email entered by the user is not valid",
+                    "code": 1003
+                }
+            ]
+        }
+    },
+    "projects": {},
+    "tasks": {},
+    "sprint": {}
+}
