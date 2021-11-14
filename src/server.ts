@@ -1,5 +1,7 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core/dist/plugin/landingPage/graphqlPlayground';
+import { PROD_ENV } from './constants';
 import dotenv from 'dotenv';
 import { typeDefs } from './graphql/models';
 import * as Query from './resolvers/Query';
@@ -13,9 +15,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
-async function startServer(){
+async function startServer() {
     const app = express();
-
 
     /**
      * Those two lines are defining the logger system, it will create an access.log file at the root of the project
@@ -25,27 +26,31 @@ async function startServer(){
     // const accessLogStream = fs.createWriteStream('./access.log', {flags: 'a'});
     // app.use(morgan('combined',{stream: accessLogStream}));
 
-
     /** *
      * Cette instance d'apollo server prend 3 paramètres:
      * typeDefs: Défini des types représentants models en db, resolver et custom type
      * Resolvers: L'équivalent d'un controller en API REST
      * Context: Correspond en quelque sorte à un middleware, nous devrions l'utiliser pour contrôler le Authorization Header lorsque nous implementerons l'authentification
      */
+    const plugins =
+        process.env.NODE_ENV !== PROD_ENV
+            ? [ApolloServerPluginLandingPageGraphQLPlayground()]
+            : [];
     const apolloServer = new ApolloServer({
         typeDefs,
         resolvers: { Query, Mutation },
+        plugins,
     });
 
     await apolloServer.start();
 
     apolloServer.applyMiddleware({
-        app, 
+        app,
         cors: {
             credentials: true,
             // Target front-end in production
             origin: '*',
-        }
+        },
     });
 
     app.listen(PORT, () => console.log('Server is running on port 4000'));
