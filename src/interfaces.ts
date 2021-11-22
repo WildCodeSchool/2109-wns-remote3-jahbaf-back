@@ -1,16 +1,18 @@
 import { ProjectInput } from './types';
 
 export interface ICreateUserArgs {
-  name: string,
-  email: string,
-  password: string
+    name: string;
+    email: string;
+    password: string;
 }
 
 export interface CreateProjectArgs {
-  projectInput: ProjectInput;
+    projectInput: ProjectInput;
 }
 
 export interface Project {
-  id: string;
-  name: string;
+    id: string;
+    name: string;
+    description: string;
+    published?: boolean;
 }

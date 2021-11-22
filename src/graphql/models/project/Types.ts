@@ -5,6 +5,8 @@ const Project = `
 type Project {
     id: ID!
     name: String
+    description: String
+    published: Boolean
 }`;
 
 /**
@@ -13,8 +15,10 @@ type Project {
  */
 const ProjectInput = `
     input ProjectInput {
-        name: String
+        name: String!
+        description: String
+        published: Boolean
     }
 `;
 
-export const ProjectTypes: string[] = [ Project, ProjectInput ];
+export const ProjectTypes: string[] = [Project, ProjectInput];
