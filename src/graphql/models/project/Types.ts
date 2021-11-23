@@ -2,12 +2,13 @@
  * Project type definition
  */
 const Project = `
-type Project {
-    id: ID!
-    name: String
-    description: String
-    published: Boolean
-}`;
+    type Project {
+        id: ID!
+        name: String
+        description: String
+        published: Boolean
+    }
+`;
 
 /**
  * ProjectInput type definition

@@ -2,11 +2,10 @@ import { prisma } from 'src/client';
 import { Project } from 'src/interfaces';
 import { ProjectInput } from 'src/types';
 
-const createOneProject = async (
+export const createOneProject = async (
     projectInput: ProjectInput
 ): Promise<Project> => {
     const { name, description, published } = projectInput;
-    console.log('CREATING A NEW PROJECT THROUGH PRISMA');
     return await prisma.project.create({
         data: {
             name,
@@ -22,7 +21,7 @@ const createOneProject = async (
     });
 };
 
-const findProjectByName = async (
+export const findProjectByName = async (
     projectName: string
 ): Promise<Project | null> => {
     return prisma.project.findFirst({
@@ -31,5 +30,3 @@ const findProjectByName = async (
         },
     });
 };
-
-export { createOneProject, findProjectByName };
