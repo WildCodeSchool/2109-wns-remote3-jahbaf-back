@@ -4,6 +4,6 @@ import { createProjectService } from 'src/services';
 export const createProject = async (
     parent: any,
     { projectInput }: CreateProjectArgs
-): Promise<Project | null> => {
+): Promise<Project> => {
     return await createProjectService(projectInput);
 };
