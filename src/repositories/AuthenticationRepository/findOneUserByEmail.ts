@@ -1,12 +1,12 @@
-import { prisma } from 'src/client';
+import { PrismaClient, User } from '.prisma/client';
 import { ICreateUserArgs } from 'src/interfaces';
 
-async function oneUserByEmail({ email }: Pick<ICreateUserArgs, 'email'>) {
-  return prisma.user.findUnique({
-    where: {
-      email,
-    },
-  });
+async function oneUserByEmail({ email }: Pick<ICreateUserArgs, 'email'>, prisma: PrismaClient): Promise<User | null> {
+    return prisma.user.findUnique({
+        where: {
+            email,
+        },
+    });
 }
 
 export { oneUserByEmail };

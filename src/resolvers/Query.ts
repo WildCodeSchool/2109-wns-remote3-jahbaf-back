@@ -1,2 +1,2 @@
-export * from './authentication/login';
-export * from './hello/hello.query';
+export * from './authentication/login.query';
+export * from './authentication/logout.query';

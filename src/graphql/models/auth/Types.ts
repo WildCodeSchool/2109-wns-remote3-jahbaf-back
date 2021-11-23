@@ -20,4 +20,20 @@ export const User = `
    activated: Boolean
  }`;
 
-export const AuthTypes: string[] = [User, AuthPayload];
+/**
+  * Void type definition
+  */
+export const Void = `
+ scalar Void
+ `;
+
+/**
+  * Message type definition
+  */
+export const Message = `
+ type Message {
+   message: String!
+ }
+ `;
+
+export const AuthTypes: string[] = [User, AuthPayload, Void, Message];

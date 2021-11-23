@@ -7,7 +7,7 @@
  */
 export const Query = `
   type Query {
-    hello: Message!
     login(email: String, password: String): AuthPayload!
+    logout: Void
   }
 `;

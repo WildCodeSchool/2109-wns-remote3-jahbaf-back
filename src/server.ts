@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { typeDefs } from './graphql/models';
 import * as Query from './resolvers/Query';
 import * as Mutation from './resolvers/Mutation';
+import { createContext } from './services/auth/context.service';
 
 /** Logger related imports */
 // import fs from 'fs';
@@ -35,6 +36,7 @@ async function startServer(){
     const apolloServer = new ApolloServer({
         typeDefs,
         resolvers: { Query, Mutation },
+        context: createContext
     });
 
     await apolloServer.start();
@@ -44,7 +46,8 @@ async function startServer(){
         cors: {
             credentials: true,
             // Target front-end in production
-            origin: '*',
+            origin: 'https://studio.apollographql.com',
+            exposedHeaders: '*'
         }
     });
 
