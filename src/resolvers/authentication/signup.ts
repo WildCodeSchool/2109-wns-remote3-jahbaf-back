@@ -1,9 +1,6 @@
-import { PrismaClient } from '.prisma/client';
 import { ICreateUserArgs } from 'src/interfaces';
 import { createOneUser } from 'src/repositories/AuthenticationRepository/createOneUser';
 import { formatEmail, hashPassword } from 'src/services/AuthenticationService/utils';
-
-
 
 async function signup(parent: any, { email, password, name }: ICreateUserArgs) {
   try {

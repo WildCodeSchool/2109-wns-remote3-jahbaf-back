@@ -1,3 +1,4 @@
 import { hello } from './hello/hello';
+import { login } from './authentication/login';
 
-export default { hello };
+export default { hello, login };
