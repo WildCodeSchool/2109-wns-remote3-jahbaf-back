@@ -22,17 +22,4 @@ const ProjectInput = `
     }
 `;
 
-/**
- *
- */
-const ProjectCreatePayLoad = `
-    type ProjectCreatePayLoad {
-        project: Project!
-    }
-`;
-
-export const ProjectTypes: string[] = [
-    Project,
-    ProjectInput,
-    ProjectCreatePayLoad,
-];
+export const ProjectTypes: string[] = [Project, ProjectInput];
