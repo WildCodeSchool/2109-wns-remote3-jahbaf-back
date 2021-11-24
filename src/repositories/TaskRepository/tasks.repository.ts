@@ -3,8 +3,7 @@ import { Task } from '.prisma/client';
 import { TaskInput } from 'src/types';
 
 const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
-    console.log('In repo, creating');
-    const { title } = taskInput;
+    const { title } = taskInput; // add other fields
     return await prisma.task.create({
         data: {
             title
@@ -25,7 +24,6 @@ const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
 const findOneTaskByKey = async (
     /* 
     projectId: string,
-    sprintId: string,
      */
     title: string
 ): Promise<Task | null> => {
@@ -36,9 +34,11 @@ const findOneTaskByKey = async (
             projectId: projectId,
             sprintId: sprint,
              */
-            title
+            title: title
         }
     });
 };
 
-export { createOneTask, findOneTaskByKey };
+const findOneTaskById = async (id : string): Promise<Task | null> => await prisma.task.findUnique({where: { id }});
+
+export { createOneTask, findOneTaskByKey, findOneTaskById };
