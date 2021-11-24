@@ -17,6 +17,19 @@
                     "code": 1003
                 }
             ]
+        },
+        "self": {
+            "type": "Query",
+            "description": "Get the current user",
+            "usage": "self(id: $id)",
+            "returns": "{ user: User }",
+            "exceptions": [
+                {
+                    "name": "USER_NOT_FOUND",
+                    "description": "The user is not logged in",
+                    "code": 1001
+                }
+            ]
         }
     },
     "projects": {},
