@@ -4,9 +4,10 @@ import { TaskInput } from 'src/types';
 
 const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
     console.log('In repo, creating');
+    const { title } = taskInput;
     return await prisma.task.create({
         data: {
-            ...taskInput
+            title
         },
         /* select: {
             id: true,
@@ -21,7 +22,7 @@ const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
  * title
  * as just title is too weak and redondant
  */
-const findOneTaskByKey = (
+const findOneTaskByKey = async (
     /* 
     projectId: string,
     sprintId: string,
@@ -29,7 +30,7 @@ const findOneTaskByKey = (
     title: string
 ): Promise<Task | null> => {
     console.log('In repo, finding');
-    return prisma.task.findFirst({
+    return await prisma.task.findFirst({
         where: {
             /* 
             projectId: projectId,

@@ -66,17 +66,17 @@ model Status {
 
 model Task {
   id          String   @id @default(uuid())
-  status      Status   @relation(fields: [status_id], references: [id])
-  sprint      Sprint   @relation(fields: [sprint_id], references: [id])
-  created_at  DateTime @default(now())
-  status_id   String
-  sprint_id   String
-  project     Project  @relation(fields: [project_id], references: [id])
-  assignee    User     @relation(fields: [user_id], references: [id])
+  status      Status?   @relation(fields: [status_id], references: [id])
+  sprint      Sprint?   @relation(fields: [sprint_id], references: [id])
+  created_at  DateTime? @default(now())
+  status_id   String?
+  sprint_id   String?
+  project     Project?  @relation(fields: [project_id], references: [id])
+  assignee    User?     @relation(fields: [user_id], references: [id])
   title       String
-  points      Int
-  priority    String
-  description String
-  project_id  String
-  user_id     String
+  points      Int?
+  priority    String?
+  description String?
+  project_id  String?
+  user_id     String?
 }
