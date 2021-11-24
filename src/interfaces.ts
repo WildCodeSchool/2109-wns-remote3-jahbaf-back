@@ -1,4 +1,5 @@
 import { ProjectInput } from './types';
+import { TaskStatusInput } from './types';
 
 export interface ICreateUserArgs {
     name: string;
@@ -24,4 +25,8 @@ export interface ProjectCreatePayLoad {
 export interface TaskStatus {
     id: string;
     name: string;
+}
+
+export interface CreateTaskStatusArgs {
+    taskStatusInput: TaskStatusInput;
 }
