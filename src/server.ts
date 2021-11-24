@@ -46,8 +46,7 @@ async function startServer(){
         cors: {
             credentials: true,
             // Target front-end in production
-            origin: 'https://studio.apollographql.com',
-            exposedHeaders: '*'
+            origin: '*',
         }
     });
 
