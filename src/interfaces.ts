@@ -20,3 +20,8 @@ export interface Project {
 export interface ProjectCreatePayLoad {
     project: Project;
 }
+
+export interface TaskStatus {
+    id: string;
+    name: string;
+}
