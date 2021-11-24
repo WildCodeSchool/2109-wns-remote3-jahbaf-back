@@ -7,6 +7,6 @@
  */
 export const Query = `
   type Query {
-    hello: Message!
+    self(id: String!): AuthPayload!
   }
 `;

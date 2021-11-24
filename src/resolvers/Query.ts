@@ -1,1 +1,1 @@
-export * from './hello/hello.query';
+export * from './self/self';
