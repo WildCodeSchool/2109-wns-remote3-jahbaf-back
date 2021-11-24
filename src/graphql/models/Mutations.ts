@@ -7,5 +7,6 @@
 export const Mutation = `
   type Mutation {
     signUp(name: String, email: String, password: String): AuthPayload!
+    createTask(title: String, points: Int, priority: String, description: String): Task!
   }
 `;
