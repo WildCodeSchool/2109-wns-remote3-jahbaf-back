@@ -19,7 +19,19 @@
             ]
         }
     },
-    "projects": {},
+    "projects": {
+        "type": "Mutation",
+        "description": "Create a new project",
+        "usage": "createProject(projectInput: ProjectInput!)",
+        "returns": "{ createProject: Project }",
+        "exceptions": [
+            {
+                "name": "MissingMandatoryFieldException",
+                "description": "One required project input field is missing",
+                "code": 2001
+            }
+        ]
+    },
     "tasks": {},
     "sprint": {}
 }
