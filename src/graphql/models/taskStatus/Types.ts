@@ -6,6 +6,7 @@ const TaskStatus = `
   type TaskStatus {
     id: ID!
     name: String
+    projectId: String
   }
 `;
 
@@ -16,6 +17,7 @@ const TaskStatus = `
 const TaskStatusInput = `
   input TaskStatusInput {
       name: String!
+      projectId: String!
   }
 `;
 export const TaskStatusTypes: string[] = [TaskStatus, TaskStatusInput];

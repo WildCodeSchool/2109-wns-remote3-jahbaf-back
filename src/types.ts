@@ -1,5 +1,4 @@
-import { Project } from './interfaces';
-import { TaskStatus } from './interfaces';
+import { Project, TaskStatus } from './interfaces';
 
 export type ProjectInput = Omit<Project, 'id'>;
 
