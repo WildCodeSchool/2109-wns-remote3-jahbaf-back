@@ -7,7 +7,7 @@
  */
 export const Query = `
   type Query {
-    hello: Message!
     findManyProjects: [Project!]!
+    findOneProject(id: String!): Project!
   }
 `;
