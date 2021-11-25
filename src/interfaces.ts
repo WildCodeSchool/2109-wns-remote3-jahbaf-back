@@ -14,7 +14,7 @@ export interface CreateProjectArgs {
 export interface Project {
     id: string;
     name: string;
-    description: string;
+    description: string | null;
     published: boolean;
 }
 

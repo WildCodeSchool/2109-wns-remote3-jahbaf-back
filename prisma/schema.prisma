@@ -26,6 +26,7 @@ model Project {
   Sprint        Sprint[]
   tasks         Task[]
   project_users Project_User[]
+  TaskStatus    TaskStatus[]
 }
 
 model User {
@@ -55,15 +56,17 @@ model Sprint {
   start_date  DateTime
   end_date    DateTime
   description String
-  projet      Project  @relation(fields: [project_id], references: [id])
+  project     Project  @relation(fields: [project_id], references: [id])
   project_id  String
   tasks       Task[]
 }
 
 model TaskStatus {
-  id    String @id @default(uuid())
-  name  String
-  tasks Task[]
+  id         String  @id @default(uuid())
+  name       String
+  project    Project @relation(fields: [project_id], references: [id])
+  project_id String
+  tasks      Task[]
 }
 
 model Task {
