@@ -39,11 +39,7 @@ const buildList = (key) => {
                     <h2>Return values</h2>
                     <p class="returns">${property.returns}</p>
                     <h2>Errors</h2>
-<<<<<<< HEAD
                     ${getExceptions(property)}
-=======
-                    ${getExceptions(property.exceptions)}
->>>>>>> 79b99de044f3d425e19d5f10dbdbb7e254ac442e
                 </div>
             </div>
         `;
