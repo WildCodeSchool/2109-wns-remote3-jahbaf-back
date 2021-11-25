@@ -1,2 +1,2 @@
 export * from './AuthenticationRepository';
-export * from './projects';
+export * from './ProjectRepository';

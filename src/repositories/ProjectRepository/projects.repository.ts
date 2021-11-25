@@ -1,10 +1,8 @@
 import { prisma } from 'src/client';
-import { Project } from 'src/interfaces';
+import { Project } from '.prisma/client';
 import { ProjectInput } from 'src/types';
 
-export const createOneProject = async (
-    projectInput: ProjectInput
-): Promise<Project> => {
+export const createOneProject = async (projectInput: ProjectInput): Promise<Project> => {
     const { name, description, published } = projectInput;
     return await prisma.project.create({
         data: {
@@ -12,11 +10,11 @@ export const createOneProject = async (
             description: description || '',
             published,
         },
-        select: {
+        /* select: {
             id: true,
             name: true,
             description: true,
             published: true,
-        },
+        }, */
     });
 };
