@@ -12,6 +12,12 @@
                     "code": 2001
                 }
             ]
+        },
+        "findManyProjects": {
+            "type": "Query",
+            "description": "Find many projects",
+            "usage": "findManyProjects()",
+            "returns": "{ findManyProjects: Project[]"
         }
     },
     "tasks": {},
