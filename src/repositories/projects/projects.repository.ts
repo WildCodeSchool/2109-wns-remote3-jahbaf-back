@@ -20,3 +20,18 @@ export const createOneProject = async (
         },
     });
 };
+
+export const findManyProjects = async () => {
+    return await prisma.project.findMany({
+        select: {
+            id: true,
+            name: true,
+            description: true,
+            published: true,
+            Sprint: true,
+            tasks: true,
+            project_users: true,
+            TaskStatus: true
+        }
+    });
+};

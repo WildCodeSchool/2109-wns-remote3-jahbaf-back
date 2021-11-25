@@ -1,6 +1,6 @@
 import { MissingMandatoryFieldException } from 'src/exceptions';
 import { Project } from 'src/interfaces';
-import { createOneProject } from 'src/repositories';
+import { createOneProject, findManyProjects } from 'src/repositories';
 import { ProjectInput } from 'src/types';
 
 export const createProjectService = async (
@@ -10,6 +10,12 @@ export const createProjectService = async (
     if (!name) {
         throw new MissingMandatoryFieldException();
     }
-
     return await createOneProject(projectInput);
+};
+
+export const findManyProjectService = async (): Promise<ProjectInput[]> => {
+    console.log('Trying to fetch many projects !');
+    const manyProjects = await findManyProjects();
+    console.log('Projects fetched successfully !');
+    return manyProjects;
 };
