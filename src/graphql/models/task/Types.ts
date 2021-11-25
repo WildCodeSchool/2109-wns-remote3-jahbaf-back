@@ -1,10 +1,10 @@
 const Task = `
 type Task {
     id: ID!
-    status_id: String
-    sprint_id: String
-    project_id: String
-    user_id: String
+    statusId: String
+    sprintId: String
+    projectId: String
+    userId: String
     title: String!
     points: Int
     priority: String
@@ -18,10 +18,10 @@ input TaskInput {
     points: Int
     priority: String
     description: String
-    status_id: String
-    sprint_id: String
-    project_id: String
-    user_id: String
+    statusId: String
+    sprintId: String
+    projectId: String
+    userId: String
 }`;
 
 export const TaskTypes: string[] = [Task, TaskInput];

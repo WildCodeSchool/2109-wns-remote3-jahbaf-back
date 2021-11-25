@@ -72,10 +72,13 @@ model Sprint {
 }
 
 model TaskStatus {
-  id       String @id @default(uuid())
-  name     String
-  tasks    Task[]
-  projects Project[]
+  id        String   @id @default(uuid())
+  name      String
+  tasks     Task[]
+  Project   Project? @relation(fields: [projectId], references: [id])
+  projectId String?
+
+
   @@map("taskstatus")
 }
 

@@ -4,9 +4,8 @@ import { TaskInput } from 'src/types';
 import { MissingMandatoryFieldException } from 'src/exceptions';
 
 export const createTaskService = async (taskInput: TaskInput): Promise<Task> => {
-    const { title, project_id } = taskInput; 
-    
-    if (!title || !project_id) throw new MissingMandatoryFieldException();
+    const { title, projectId } = taskInput; 
+    if (!title || !projectId) throw new MissingMandatoryFieldException();
     return await createOneTask(taskInput);
 };
 
