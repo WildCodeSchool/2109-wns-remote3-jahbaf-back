@@ -36,7 +36,7 @@ export const findManyProjects = async () => {
     });
 };
 
-export const findOneProject = async (id: string) => {
+export const findProjectById = async (id: string) => {
     return await prisma.project.findUnique({
         where: {
             id

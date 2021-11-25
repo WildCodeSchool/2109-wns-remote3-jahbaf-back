@@ -22,7 +22,7 @@
         "findOneProject": {
             "type": "Query",
             "description": "Find one projects",
-            "usage": "findOneyProject(id: String!)",
+            "usage": "findProjectById(id: String!)",
             "returns": "Project!",
             "exceptions": [
                 {
