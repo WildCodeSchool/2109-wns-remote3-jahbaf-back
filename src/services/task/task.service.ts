@@ -4,13 +4,14 @@ import { TaskInput } from 'src/types';
 
 export const createTaskService = async (taskInput: TaskInput): Promise<Task> => {
     let createdTask: Task | null = null;
-    const {/* projectId, */title, } = taskInput; 
+    const { title, } = taskInput; 
     const alreadyExist: Task | null = await findOneTaskByKey(title);
     console.log('task is: ' + alreadyExist);
     if (!alreadyExist) {
         try {
             createdTask = await createOneTask(taskInput);
         } catch(e) {
+            console.log(e);
             throw new Error('Could not create task');
         }
     } else {

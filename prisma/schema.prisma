@@ -70,13 +70,13 @@ model TaskStatus {
 }
 
 model Task {
-  id          String     @id @default(uuid())
-  status      TaskStatus @relation(fields: [status_id], references: [id])
+  id          String      @id @default(uuid())
+  status      TaskStatus? @relation(fields: [status_id], references: [id])
   sprint      Sprint?     @relation(fields: [sprint_id], references: [id])
-  created_at  DateTime   @default(now())
-  status_id   String
+  created_at  DateTime    @default(now())
+  status_id   String?
   sprint_id   String?
-  project     Project    @relation(fields: [project_id], references: [id])
+  project     Project     @relation(fields: [project_id], references: [id])
   assignee    User?       @relation(fields: [user_id], references: [id])
   title       String
   points      Int?

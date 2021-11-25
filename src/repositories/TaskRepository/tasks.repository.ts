@@ -3,10 +3,9 @@ import { Task } from '.prisma/client';
 import { TaskInput } from 'src/types';
 
 const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
-    const { title } = taskInput; // add other fields
     return await prisma.task.create({
         data: {
-            title
+            ...taskInput
         },
         /* select: {
             id: true,
