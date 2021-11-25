@@ -14,6 +14,26 @@
             ]
         }
     },
-    "tasks": {},
+    "tasks": {
+        "createTask": {
+            "type": "Mutation",
+            "descrption": "Create a new task",
+            "usage": "createTask(taskInput: TaskInput!)",
+            "returns": "{ createTask: Task }",
+            "exceptions": [
+                {
+                    "name": "MissingMandatoryFieldException",
+                    "description": "One required task input field is missing",
+                    "code": 2001
+                }
+            ]
+        },
+        "selectOneTask": {
+            "type": "Query",
+            "description": "Select one task by id",
+            "usage": "selectOneTask(id: String!)",
+            "returns": "{task: Task}"
+        }
+    },
     "sprint": {}
 }
