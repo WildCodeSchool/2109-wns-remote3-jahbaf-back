@@ -28,6 +28,7 @@ model Project {
   Sprint        Sprint[]
   tasks         Task[]
   project_users Project_User[]
+  TaskStatus    TaskStatus[]
 
   @@map("project")
 }

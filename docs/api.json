@@ -1,36 +1,18 @@
 {
-    "authentication": {
-        "signIn": {
-            "type": "Query",
-            "description": "Create an account for the user",
-            "usage": "signIn(email: $email, password: $password)",
-            "returns": "{ user: User, token: String }",
+    "projects": {
+        "createProject": {
+            "type": "Mutation",
+            "description": "Create a new project",
+            "usage": "createProject(projectInput: ProjectInput!)",
+            "returns": "{ createProject: Project }",
             "exceptions": [
                 {
-                    "name": "InvalidEmailException",
-                    "description": "The email entered by the user is not valid",
-                    "code": 1002
-                },
-                {
-                    "name": "InvalidEmailException",
-                    "description": "The email entered by the user is not valid",
-                    "code": 1003
+                    "name": "MissingMandatoryFieldException",
+                    "description": "One required project input field is missing",
+                    "code": 2001
                 }
             ]
         }
-    },
-    "projects": {
-        "type": "Mutation",
-        "description": "Create a new project",
-        "usage": "createProject(projectInput: ProjectInput!)",
-        "returns": "{ createProject: Project }",
-        "exceptions": [
-            {
-                "name": "MissingMandatoryFieldException",
-                "description": "One required project input field is missing",
-                "code": 2001
-            }
-        ]
     },
     "tasks": {},
     "sprint": {}
