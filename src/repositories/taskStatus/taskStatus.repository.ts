@@ -17,3 +17,12 @@ export const createOneTaskStatus = async (taskStatusInput: TaskStatusInput): Pro
         },
     });
 };
+
+export const findProjectTaskStatusByName = async(projectId: string, name: string): Promise<TaskStatus | null> => {
+    return await prisma.taskStatus.findFirst({
+        where: {
+            projectId,
+            name
+        },
+    });
+};
