@@ -26,6 +26,7 @@ model Project {
   Sprint        Sprint[]
   tasks         Task[]
   project_users Project_User[]
+  TaskStatus    TaskStatus[]
 }
 
 model User {
@@ -55,30 +56,32 @@ model Sprint {
   start_date  DateTime
   end_date    DateTime
   description String
-  projet      Project  @relation(fields: [project_id], references: [id])
+  project     Project  @relation(fields: [project_id], references: [id])
   project_id  String
   tasks       Task[]
 }
 
-model Status {
-  id    String @id @default(uuid())
-  name  String
-  tasks Task[]
+model TaskStatus {
+  id         String  @id @default(uuid())
+  name       String
+  project    Project @relation(fields: [project_id], references: [id])
+  project_id String
+  tasks      Task[]
 }
 
 model Task {
-  id          String   @id @default(uuid())
-  status      Status?   @relation(fields: [status_id], references: [id])
-  sprint      Sprint?   @relation(fields: [sprint_id], references: [id])
-  created_at  DateTime? @default(now())
-  status_id   String?
+  id          String     @id @default(uuid())
+  status      TaskStatus @relation(fields: [status_id], references: [id])
+  sprint      Sprint?     @relation(fields: [sprint_id], references: [id])
+  created_at  DateTime   @default(now())
+  status_id   String
   sprint_id   String?
-  project     Project?  @relation(fields: [project_id], references: [id])
-  assignee    User?     @relation(fields: [user_id], references: [id])
+  project     Project    @relation(fields: [project_id], references: [id])
+  assignee    User?       @relation(fields: [user_id], references: [id])
   title       String
   points      Int?
   priority    String?
   description String?
-  project_id  String?
+  project_id  String
   user_id     String?
 }

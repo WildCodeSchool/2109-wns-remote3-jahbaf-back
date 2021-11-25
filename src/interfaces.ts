@@ -13,8 +13,12 @@ export interface CreateProjectArgs {
 export interface Project {
     id: string;
     name: string;
-    description?: string | null;
-    published?: boolean;
+    description: string | null;
+    published: boolean;
+}
+
+export interface ProjectCreatePayLoad {
+    project: Project;
 }
 
 export interface CreateTaskArgs {

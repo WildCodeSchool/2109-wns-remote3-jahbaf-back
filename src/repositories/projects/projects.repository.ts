@@ -9,7 +9,7 @@ export const createOneProject = async (
     return await prisma.project.create({
         data: {
             name,
-            description,
+            description: description || '',
             published,
         },
         select: {
@@ -17,16 +17,6 @@ export const createOneProject = async (
             name: true,
             description: true,
             published: true,
-        },
-    });
-};
-
-export const findProjectByName = async (
-    projectName: string
-): Promise<Project | null> => {
-    return prisma.project.findFirst({
-        where: {
-            name: projectName,
         },
     });
 };
