@@ -17,7 +17,7 @@
     "tasks": {
         "createTask": {
             "type": "Mutation",
-            "descrption": "Create a new task",
+            "description": "Create a new task",
             "usage": "createTask(taskInput: TaskInput!)",
             "returns": "{ createTask: Task }",
             "exceptions": [
@@ -32,7 +32,7 @@
             "type": "Query",
             "description": "Select one task by id",
             "usage": "selectOneTask(id: String!)",
-            "returns": "{task: Task}"
+            "returns": "{ task: Task }"
         }
     },
     "sprint": {}
