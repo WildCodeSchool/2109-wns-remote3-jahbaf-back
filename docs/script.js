@@ -3,11 +3,11 @@ import apiData from './api.json' assert { type: "json" };
 const buttonContainer = document.getElementsByClassName('buttons-container')[0];
 const contentContainer = document.getElementsByClassName('content')[0];
 
-const getExceptions = (exceptions) => {
-    if(exceptions.length) {
+const getExceptions = (property) => {
+    if(property.exceptions && property.exceptions.length) {
         return `
         <div class="exceptions">
-            ${exceptions.map(exception => `
+            ${property.exceptions.map(exception => `
                 <div class="exception">
                     <h3>${exception.name}</h3>
                     <p class="exception-description">Description: ${exception.description}</p>
@@ -39,7 +39,11 @@ const buildList = (key) => {
                     <h2>Return values</h2>
                     <p class="returns">${property.returns}</p>
                     <h2>Errors</h2>
+<<<<<<< HEAD
+                    ${getExceptions(property)}
+=======
                     ${getExceptions(property.exceptions)}
+>>>>>>> 79b99de044f3d425e19d5f10dbdbb7e254ac442e
                 </div>
             </div>
         `;
