@@ -5,8 +5,8 @@
   - You are about to drop the `Project_User` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Role` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Sprint` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Status` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Task` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `TaskStatus` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
 
 */
@@ -34,6 +34,9 @@ ALTER TABLE "Task" DROP CONSTRAINT "Task_status_id_fkey";
 -- DropForeignKey
 ALTER TABLE "Task" DROP CONSTRAINT "Task_user_id_fkey";
 
+-- DropForeignKey
+ALTER TABLE "TaskStatus" DROP CONSTRAINT "TaskStatus_project_id_fkey";
+
 -- DropTable
 DROP TABLE "Project";
 
@@ -47,10 +50,10 @@ DROP TABLE "Role";
 DROP TABLE "Sprint";
 
 -- DropTable
-DROP TABLE "Status";
+DROP TABLE "Task";
 
 -- DropTable
-DROP TABLE "Task";
+DROP TABLE "TaskStatus";
 
 -- DropTable
 DROP TABLE "User";
@@ -113,6 +116,7 @@ CREATE TABLE "sprint" (
 CREATE TABLE "taskstatus" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "projectId" TEXT,
 
     CONSTRAINT "taskstatus_pkey" PRIMARY KEY ("id")
 );
@@ -147,6 +151,9 @@ ALTER TABLE "project_user" ADD CONSTRAINT "project_user_role_id_fkey" FOREIGN KE
 
 -- AddForeignKey
 ALTER TABLE "sprint" ADD CONSTRAINT "sprint_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "taskstatus" ADD CONSTRAINT "taskstatus_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "task" ADD CONSTRAINT "task_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "taskstatus"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
