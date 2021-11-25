@@ -13,9 +13,7 @@ export const createProjectService = async (
     return await createOneProject(projectInput);
 };
 
-export const findManyProjectService = async (): Promise<ProjectInput[]> => {
+export const findManyProjectService = async (): Promise<Project[]> => {
     console.log('Trying to fetch many projects !');
-    const manyProjects = await findManyProjects();
-    console.log('Projects fetched successfully !');
-    return manyProjects;
+    return  await findManyProjects(); 
 };

@@ -17,7 +17,7 @@
             "type": "Query",
             "description": "Find many projects",
             "usage": "findManyProjects()",
-            "returns": "{ findManyProjects: Project[]"
+            "returns": "{ findManyProjects: Project[] }"
         }
     },
     "tasks": {},

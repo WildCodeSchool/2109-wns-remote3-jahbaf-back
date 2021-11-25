@@ -1,7 +1,7 @@
 import { findManyProjectService } from 'src/services';
-import { ProjectInput } from 'src/types';
+import { Project } from 'src/interfaces';
 
-export const findManyProjects = async (): Promise<ProjectInput[]> => {
+export const findManyProjects = async (): Promise<Project[]> => {
     try {
         return await findManyProjectService();
     } catch (e) {
