@@ -1,7 +1,27 @@
-import apiData from './api.json' assert { type: "json" };
+import apiData from './api.json' assert { type: 'json' };
 
 const buttonContainer = document.getElementsByClassName('buttons-container')[0];
 const contentContainer = document.getElementsByClassName('content')[0];
+
+const getExceptions = (property) => {
+    if (property.exceptions && property.exceptions.length) {
+        return `
+        <div class="exceptions">
+            ${property.exceptions
+                .map(
+                    (exception) => `
+                <div class="exception">
+                    <h3>${exception.name}</h3>
+                    <p class="exception-description">Description: ${exception.description}</p>
+                    <p class="exception-code">Code d'erreur: ${exception.code}</p>
+                </div>
+            `
+                )
+                .join('')}
+        </div>
+        `;
+    } else return '';
+};
 
 const buildList = (key) => {
     const list = document.createElement('div');
@@ -13,7 +33,9 @@ const buildList = (key) => {
         item.innerHTML = `
             <div class="item closed">
                 <header>
-                    <span class="${property.type.toLowerCase()}">${property.type}</span>
+                    <span class="${property.type.toLowerCase()}">${
+            property.type
+        }</span>
                     <h1>${subKey}</h1>
                 </header>
                 <div>
@@ -23,15 +45,7 @@ const buildList = (key) => {
                     <h2>Return values</h2>
                     <p class="returns">${property.returns}</p>
                     <h2>Errors</h2>
-                    <div class="exceptions">
-                        ${property.exceptions.map(exception => `
-                            <div class="exception">
-                                <h3>${exception.name}</h3>
-                                <p class="exception-description">Description: ${exception.description}</p>
-                                <p class="exception-code">Code d'erreur: ${exception.code}</p>
-                            </div>
-                        `).join('')}
-                    </div>
+                    ${getExceptions(property)}
                 </div>
             </div>
         `;
@@ -40,7 +54,7 @@ const buildList = (key) => {
     }
     contentContainer.innerHTML = '';
     contentContainer.appendChild(list);
-}
+};
 
 let selectedCategory = 'authentication';
 buildList(selectedCategory);

@@ -14,6 +14,8 @@ model Role {
   id            Int            @id @default(autoincrement())
   name          String
   project_users Project_User[]
+
+  @@map("role")
 }
 
 model Project {
@@ -21,11 +23,14 @@ model Project {
   name          String
   description   String?
   published     Boolean        @default(false)
-  created_at    DateTime       @default(now())
-  updated_at    DateTime       @default(now())
-  Sprint        Sprint[]
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @default(now()) @map("updated_at")
+  sprint        Sprint[]
   tasks         Task[]
-  project_users Project_User[]
+  projectUsers  Project_User[]
+  taskStatus    TaskStatus[]
+
+  @@map("project")
 }
 
 model User {
@@ -34,51 +39,66 @@ model User {
   email         String         @unique
   password      String
   activated     Boolean        @default(false)
-  updated_at    DateTime       @default(now())
-  created_at    DateTime       @default(now())
+  updatedAt     DateTime       @default(now()) @map("created_at")
+  createdAt     DateTime       @default(now()) @map("updated_at")
   tasks         Task[]
   project_users Project_User[]
+
+  @@map("user")
 }
 
 model Project_User {
-  id         Int     @id @default(autoincrement())
-  project    Project @relation(fields: [project_id], references: [id])
-  user       User    @relation(fields: [user_id], references: [id])
-  roles      Role    @relation(fields: [role_id], references: [id])
-  role_id    Int
-  project_id String
-  user_id    String
+  id        Int     @id @default(autoincrement())
+  project   Project @relation(fields: [projectId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+  roles     Role    @relation(fields: [roleId], references: [id])
+  roleId    Int     @map("role_id")
+  projectId String  @map("project_id")
+  userId    String  @map("user_id")
+
+  @@map("project_user")
 }
 
 model Sprint {
   id          String   @id @default(uuid())
-  start_date  DateTime
-  end_date    DateTime
+  startDate   DateTime @map("start_date")
+  endDate     DateTime @map("end_date")
   description String
-  projet      Project  @relation(fields: [project_id], references: [id])
-  project_id  String
+  project     Project  @relation(fields: [projectId], references: [id])
+  projectId   String   @map("project_id")
   tasks       Task[]
+
+  @@map("sprint")
 }
 
-model Status {
-  id    String @id @default(uuid())
-  name  String
-  tasks Task[]
+model TaskStatus {
+  id        String  @id @default(uuid())
+  name      String
+  tasks     Task[]
+  Project   Project @relation(fields: [projectId], references: [id])
+  projectId String
+
+
+  @@map("taskstatus")
 }
 
 model Task {
-  id          String   @id @default(uuid())
-  status      Status   @relation(fields: [status_id], references: [id])
-  sprint      Sprint   @relation(fields: [sprint_id], references: [id])
-  created_at  DateTime @default(now())
-  status_id   String
-  sprint_id   String
-  project     Project  @relation(fields: [project_id], references: [id])
-  assignee    User     @relation(fields: [user_id], references: [id])
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @default(now()) @map("updated_at")
+  status      TaskStatus? @relation(fields: [statusId], references: [id])
+  statusId    String?     @map("status_id")
+  sprint      Sprint?     @relation(fields: [sprintId], references: [id])
+  sprintId    String?     @map("sprint_id")
+  project     Project     @relation(fields: [projectId], references: [id])
+  projectId   String      @map("project_id")
+  assignee    User?       @relation(fields: [userId], references: [id])
+  userId      String?     @map("user_id")
   title       String
-  points      Int
-  priority    String
-  description String
-  project_id  String
-  user_id     String
+  points      Int?
+  priority    String?
+  description String?
+
+  @@map("task")
+
 }
