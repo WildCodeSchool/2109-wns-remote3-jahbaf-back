@@ -29,6 +29,7 @@ export const findManyProjects = async () => {
             description: true,
             published: true,
             Sprint: true,
+            createdAt: true,
             tasks: true,
             project_users: true,
             TaskStatus: true,
@@ -39,7 +40,7 @@ export const findManyProjects = async () => {
 export const findProjectById = async (id: string) => {
     return await prisma.project.findUnique({
         where: {
-            id
+            id,
         },
         select: {
             id: true,
@@ -47,9 +48,10 @@ export const findProjectById = async (id: string) => {
             description: true,
             published: true,
             Sprint: true,
+            createdAt: true,
             tasks: true,
             project_users: true,
-            TaskStatus: true
-        }
+            TaskStatus: true,
+        },
     });
 };
