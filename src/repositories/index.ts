@@ -1,2 +1,3 @@
 export * from './AuthenticationRepository';
-export * from './sprints';
+export * from './SprintsRepository';
+export * from './ProjectRepository';
