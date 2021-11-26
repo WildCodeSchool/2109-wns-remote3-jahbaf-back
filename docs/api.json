@@ -52,6 +52,24 @@
             "description": "Select one task by id",
             "usage": "selectOneTask(id: String!)",
             "returns": "{ task: Task }"
+        },
+        "assignTaskStatus": {
+            "type": "Mutation",
+            "description": "Assign a task status to a task",
+            "usage": "assignTaskStatus(taskId: String!, taskStatusId: String!)",
+            "returns": "{ assignTaskStatus: Task }",
+            "exceptions": [
+                {
+                    "name": "UnknownTaskException",
+                    "description": "The task doesn't exist",
+                    "code": 4001
+                },
+                {
+                    "name": "UnknownTaskStatusException",
+                    "description": "The task status doesn't exist",
+                    "code": 3002
+                }
+            ]
         }
     },
     "taskStatus": {
