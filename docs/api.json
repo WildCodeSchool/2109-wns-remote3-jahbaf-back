@@ -21,5 +21,19 @@
     },
     "projects": {},
     "tasks": {},
-    "sprint": {}
+    "sprint": {
+        "createSprint": {
+            "type": "Mutation",
+            "description": "Create a sprint onto an existing project",
+            "usage": "createSprint(sprintInput: SprintInput!)",
+            "returns": "{ createSprint: Sprint }",
+            "exceptions": [
+                {
+                    "name": "InvalidDateFormatException",
+                    "description": "The date format entered by the user is not valid",
+                    "code": 2002
+                }
+            ]
+        }
+    }
 }
