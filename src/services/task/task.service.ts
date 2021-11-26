@@ -1,4 +1,4 @@
-import { Task } from '.prisma/client';
+import { Task } from 'src/interfaces';
 import {
     createOneTask,
     findOneTaskById,

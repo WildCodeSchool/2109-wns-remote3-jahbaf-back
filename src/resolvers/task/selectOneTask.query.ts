@@ -1,4 +1,4 @@
-import { Task } from '.prisma/client';
+import { Task } from 'src/interfaces';
 import { selectOneTaskService } from 'src/services';
 
 export const selectOneTask = async (
