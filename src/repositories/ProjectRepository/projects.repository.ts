@@ -1,5 +1,5 @@
 import { prisma } from 'src/client';
-import { Project } from 'src/interfaces';
+import { Project } from '.prisma/client';
 import { ProjectInput } from 'src/types';
 
 export const createOneProject = async (
@@ -12,11 +12,26 @@ export const createOneProject = async (
             description: description || '',
             published,
         },
+        /* select: {
+            id: true,
+            name: true,
+            description: true,
+            published: true,
+        }, */
+    });
+};
+
+export const findManyProjects = async () => {
+    return await prisma.project.findMany({
         select: {
             id: true,
             name: true,
             description: true,
             published: true,
+            Sprint: true,
+            tasks: true,
+            project_users: true,
+            TaskStatus: true,
         },
     });
 };
