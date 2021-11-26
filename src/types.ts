@@ -1,4 +1,6 @@
-import { Project, TaskStatus, Task } from './interfaces';
+import { Sprint, Project, TaskStatus, Task } from './interfaces';
+
+export type SprintInput = Omit<Sprint, 'id'>;
 
 export type ProjectInput = Omit<Project, 'id'>;
 
