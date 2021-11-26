@@ -12,6 +12,46 @@
                     "code": 2001
                 }
             ]
+        },
+        "findManyProjects": {
+            "type": "Query",
+            "description": "Find many projects",
+            "usage": "findManyProjects()",
+            "returns": "Project[]"
+        },
+        "findProjectById": {
+            "type": "Query",
+            "description": "Find one project",
+            "usage": "findProjectById(id: String!)",
+            "returns": "Project!",
+            "exceptions": [
+                {
+                    "name": "ProjectNotFoundException",
+                    "description": "The project id provided doesn't exist",
+                    "code": 2002
+                }
+            ]
+        }
+    },
+    "tasks": {
+        "createTask": {
+            "type": "Mutation",
+            "description": "Create a new task",
+            "usage": "createTask(taskInput: TaskInput!)",
+            "returns": "{ createTask: Task }",
+            "exceptions": [
+                {
+                    "name": "MissingMandatoryFieldException",
+                    "description": "One required task input field is missing",
+                    "code": 2001
+                }
+            ]
+        },
+        "selectOneTask": {
+            "type": "Query",
+            "description": "Select one task by id",
+            "usage": "selectOneTask(id: String!)",
+            "returns": "{ task: Task }"
         }
     },
     "tasks": {},
