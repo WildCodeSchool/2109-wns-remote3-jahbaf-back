@@ -29,6 +29,7 @@ export interface TaskStatus {
 
 export interface CreateTaskStatusArgs {
     taskStatusInput: TaskStatusInput;
+}
 export interface Task {
     id: string;
     createdAt: Date;

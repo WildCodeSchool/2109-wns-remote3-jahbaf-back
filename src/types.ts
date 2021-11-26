@@ -1,5 +1,4 @@
-import { Project, TaskStatus } from './interfaces';
-import { Task, Project } from '.prisma/client';
+import { Project, TaskStatus, Task } from './interfaces';
 
 export type ProjectInput = Omit<Project, 'id'>;
 
