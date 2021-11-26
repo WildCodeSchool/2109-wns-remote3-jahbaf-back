@@ -70,5 +70,20 @@
             ]
         }
     },
+    "authentication": {
+        "self": {
+            "type": "Query",
+            "description": "Return user's data",
+            "usage": "self(id: String!): AuthPayload!",
+            "returns": "AuthPayload!",
+            "exceptions": [
+                {
+                    "name": "UserNotFoundException",
+                    "description": "Cet utilisateur n'existe pas",
+                    "code": 1001
+                }
+            ]
+        }
+    },
     "sprint": {}
 }

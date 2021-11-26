@@ -1,5 +1,5 @@
 import { PrismaClient, User } from '.prisma/client';
-import { ApolloError } from 'apollo-server-errors';
+import { UserNotFound } from 'src/exceptions';
 import { oneUserById } from 'src/repositories/AuthenticationRepository/oneUserById.repository';
 
 
@@ -12,7 +12,7 @@ async function self(
     prisma: PrismaClient,
 ) {
     const user = await oneUserById({ id: args.id }, prisma);
-    if(!user) throw new ApolloError('User not found');
+    if(!user) throw new UserNotFound();
     return user;
 }
 
