@@ -8,6 +8,7 @@
 export const Query = `
   type Query {
     findManyProjects: [Project!]!
+    findProjectById(id: String!): Project!
     selectOneTask(id: String!): Task!
   }
 `;

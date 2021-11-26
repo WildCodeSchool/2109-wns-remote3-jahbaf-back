@@ -17,7 +17,20 @@
             "type": "Query",
             "description": "Find many projects",
             "usage": "findManyProjects()",
-            "returns": "{ findManyProjects: Project[] }"
+            "returns": "Project[]"
+        },
+        "findProjectById": {
+            "type": "Query",
+            "description": "Find one project",
+            "usage": "findProjectById(id: String!)",
+            "returns": "Project!",
+            "exceptions": [
+                {
+                    "name": "ProjectNotFoundException",
+                    "description": "The project id provided doesn't exist",
+                    "code": 2002
+                }
+            ]
         }
     },
     "tasks": {
