@@ -1,12 +1,14 @@
 /**
  *  Ici on retrouve un "model" de chacuns nos Resolvers de mutation.
- *  Exemple: 
+ *  Exemple:
  *  login(email: String, password: String) AuthMessage!
  *  logout: Void
  *  findOneTask(id: String!) Task!
  */
 export const Query = `
   type Query {
-    hello: Message!
+    findManyProjects: [Project!]!
+    findProjectById(id: String!): Project!
+    selectOneTask(id: String!): Task!
   }
 `;
