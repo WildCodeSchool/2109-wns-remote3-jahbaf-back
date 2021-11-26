@@ -5,7 +5,7 @@ import {
 } from 'graphql';
 import { InvalidDateFormatException } from 'src/exceptions';
 
-const parseDateValue: GraphQLScalarValueParser<Date> = (value: unknown) => {
+const parseDateValue: GraphQLScalarValueParser<Date> = (value: unknown): Date => {
     const dateStr = value as string;
     if (!Date.parse(dateStr)) {
         throw new InvalidDateFormatException();
@@ -13,7 +13,7 @@ const parseDateValue: GraphQLScalarValueParser<Date> = (value: unknown) => {
     return new Date(dateStr);
 };
 
-const serializeDate: GraphQLScalarSerializer<string> = (value: unknown) => {
+const serializeDate: GraphQLScalarSerializer<string> = (value: unknown): string => {
     const date = value as Date;
     return date.toISOString();
 };

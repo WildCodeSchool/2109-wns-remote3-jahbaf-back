@@ -14,12 +14,5 @@ export const createOneSprint = async (
             description,
             projectId,
         },
-        select: {
-            id: true,
-            startDate: true,
-            endDate: true,
-            projectId: true,
-            description: true,
-        },
     });
 };
