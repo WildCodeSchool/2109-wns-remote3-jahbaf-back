@@ -7,6 +7,13 @@ import { SprintTypes } from './sprint/Types';
 import { TaskStatusTypes } from './taskStatus/Types';
 import { Mutation } from './Mutations';
 
-export const Types = [...AuthTypes, ...ProjectTypes, ...TaskStatusTypes, ...TaskTypes, ...SprintTypes,];
+export const Types = [
+    ...AuthTypes,
+    ...ProjectTypes,
+    ...TaskStatusTypes,
+    ...TaskTypes,
+    ...SprintTypes,
+    ...CustomTypes,
+];
 
 export const typeDefs = [Mutation, Query, ...Types];
