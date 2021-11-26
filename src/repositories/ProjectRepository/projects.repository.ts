@@ -28,10 +28,10 @@ export const findManyProjects = async () => {
             name: true,
             description: true,
             published: true,
-            Sprint: true,
+            sprint: true,
             tasks: true,
-            project_users: true,
-            TaskStatus: true,
+            projectUsers: true,
+            taskStatus: true,
         },
     });
 };
@@ -46,10 +46,10 @@ export const findProjectById = async (id: string) => {
             name: true,
             description: true,
             published: true,
-            Sprint: true,
+            sprint: true,
             tasks: true,
-            project_users: true,
-            TaskStatus: true
+            projectUsers: true,
+            taskStatus: true
         }
     });
 };

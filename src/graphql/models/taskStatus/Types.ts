@@ -5,8 +5,8 @@
 const TaskStatus = `
   type TaskStatus {
     id: ID!
-    name: String
-    projectId: String
+    name: String!
+    projectId: String!
   }
 `;
 
