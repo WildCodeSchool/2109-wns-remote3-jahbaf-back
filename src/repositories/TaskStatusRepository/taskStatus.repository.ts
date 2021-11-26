@@ -26,3 +26,13 @@ export const findProjectTaskStatusByName = async(projectId: string, name: string
         },
     });
 };
+
+export const findManyTaskStatus = async (): Promise<TaskStatus[]> => {
+    return await prisma.taskStatus.findMany({
+        select: {
+            id: true,
+            name: true,
+            projectId: true,
+        },
+    });
+};
