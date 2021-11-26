@@ -8,6 +8,6 @@
 export const Query = `
   type Query {
     findManyProjects: [Project!]!
-    findOneProject(id: String!): Project!
+    findProjectById(id: String!): Project!
   }
 `;
