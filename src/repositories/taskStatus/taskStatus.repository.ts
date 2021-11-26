@@ -2,9 +2,11 @@ import { TaskStatus } from '.prisma/client';
 import { prisma } from 'src/client';
 import { TaskStatusInput } from 'src/types';
 
-export const createOneTaskStatus = async (taskStatusInput: TaskStatusInput): Promise<TaskStatus> => {
+export const createOneTaskStatus = async (
+    taskStatusInput: TaskStatusInput
+): Promise<TaskStatus> => {
     const { name, projectId } = taskStatusInput;
-    
+
     return await prisma.taskStatus.create({
         data: {
             name,
@@ -18,11 +20,24 @@ export const createOneTaskStatus = async (taskStatusInput: TaskStatusInput): Pro
     });
 };
 
-export const findProjectTaskStatusByName = async(projectId: string, name: string): Promise<TaskStatus | null> => {
+export const findProjectTaskStatusByName = async (
+    projectId: string,
+    name: string
+): Promise<TaskStatus | null> => {
     return await prisma.taskStatus.findFirst({
         where: {
             projectId,
-            name
+            name,
+        },
+    });
+};
+
+export const findOneProjectTaskStatusById = async (
+    id: string
+): Promise<TaskStatus | null> => {
+    return await prisma.taskStatus.findUnique({
+        where: {
+            id,
         },
     });
 };
