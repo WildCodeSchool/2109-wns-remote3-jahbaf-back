@@ -12,12 +12,6 @@ export const createOneProject = async (
             description: description || '',
             published,
         },
-        /* select: {
-            id: true,
-            name: true,
-            description: true,
-            published: true,
-        }, */
     });
 };
 
@@ -31,7 +25,7 @@ export const findManyProjects = async () => {
             Sprint: true,
             tasks: true,
             project_users: true,
-            TaskStatus: true,
+            taskStatus: true,
         },
     });
 };
