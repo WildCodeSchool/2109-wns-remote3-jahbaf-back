@@ -1,26 +1,74 @@
 {
-    "authentication": {
-        "signIn": {
-            "type": "Query",
-            "description": "Create an account for the user",
-            "usage": "signIn(email: $email, password: $password)",
-            "returns": "{ user: User, token: String }",
+    "projects": {
+        "createProject": {
+            "type": "Mutation",
+            "description": "Create a new project",
+            "usage": "createProject(projectInput: ProjectInput!)",
+            "returns": "{ createProject: Project }",
             "exceptions": [
                 {
-                    "name": "InvalidEmailException",
-                    "description": "The email entered by the user is not valid",
-                    "code": 1002
-                },
+                    "name": "MissingMandatoryFieldException",
+                    "description": "One required project input field is missing",
+                    "code": 2001
+                }
+            ]
+        },
+        "findManyProjects": {
+            "type": "Query",
+            "description": "Find many projects",
+            "usage": "findManyProjects()",
+            "returns": "Project[]"
+        },
+        "findProjectById": {
+            "type": "Query",
+            "description": "Find one project",
+            "usage": "findProjectById(id: String!)",
+            "returns": "Project!",
+            "exceptions": [
                 {
-                    "name": "InvalidEmailException",
-                    "description": "The email entered by the user is not valid",
-                    "code": 1003
+                    "name": "ProjectNotFoundException",
+                    "description": "The project id provided doesn't exist",
+                    "code": 2002
                 }
             ]
         }
     },
-    "projects": {},
-    "tasks": {},
+    "tasks": {
+        "createTask": {
+            "type": "Mutation",
+            "description": "Create a new task",
+            "usage": "createTask(taskInput: TaskInput!)",
+            "returns": "{ createTask: Task }",
+            "exceptions": [
+                {
+                    "name": "MissingMandatoryFieldException",
+                    "description": "One required task input field is missing",
+                    "code": 2001
+                }
+            ]
+        },
+        "selectOneTask": {
+            "type": "Query",
+            "description": "Select one task by id",
+            "usage": "selectOneTask(id: String!)",
+            "returns": "{ task: Task }"
+        }
+    },
+    "taskStatus": {
+        "createTaskStatus": {
+            "type": "Mutation",
+            "description": "Create new task status",
+            "usage": "createTaskStatus(taskStatusInput: TaskStatusInput!)",
+            "returns": "{ createTaskStatus: TaskStatus }",
+            "exceptions": [
+                {
+                    "name": "AlreadyExistsException",
+                    "description": "This task status already exists",
+                    "code": 3001
+                }
+            ]
+        }
+    },
     "sprint": {
         "createSprint": {
             "type": "Mutation",

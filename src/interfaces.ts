@@ -1,4 +1,4 @@
-import { SprintInput } from './types';
+import { TaskInput, ProjectInput, TaskStatusInput, SprintInput } from './types';
 
 export interface ICreateUserArgs {
     name: string;
@@ -16,4 +16,46 @@ export interface Sprint {
 
 export interface CreateSprintArgs {
     sprintInput: SprintInput;
+}
+
+export interface CreateProjectArgs {
+    projectInput: ProjectInput;
+}
+
+export interface Project {
+    id: string;
+    name: string;
+    description: string | null;
+    published: boolean;
+}
+
+export interface ProjectCreatePayLoad {
+    project: Project;
+}
+
+export interface TaskStatus {
+    id: string;
+    name: string;
+    projectId: string;
+}
+
+export interface CreateTaskStatusArgs {
+    taskStatusInput: TaskStatusInput;
+}
+export interface Task {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    statusId: string | null;
+    sprintId: string | null;
+    projectId: string;
+    userId: string | null;
+    title: string;
+    points: number | null;
+    priority: string | null;
+    description: string | null;
+}
+
+export interface CreateTaskArgs {
+    taskInput: TaskInput;
 }
