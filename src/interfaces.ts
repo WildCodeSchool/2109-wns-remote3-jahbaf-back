@@ -22,5 +22,5 @@ export interface ProjectCreatePayLoad {
 }
 
 export interface CreateTaskArgs {
-  taskInput: TaskInput
+    taskInput: TaskInput;
 }

@@ -5,7 +5,7 @@ import { TaskInput } from 'src/types';
 const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
     return await prisma.task.create({
         data: {
-            ...taskInput
+            ...taskInput,
         },
         /* select: {
             id: true,
@@ -33,11 +33,12 @@ const findOneTaskByKey = async (
             projectId: projectId,
             sprintId: sprint,
              */
-            title: title
-        }
+            title: title,
+        },
     });
 };
 
-const findOneTaskById = async (id : string): Promise<Task | null> => await prisma.task.findUnique({where: { id }});
+const findOneTaskById = async (id: string): Promise<Task | null> =>
+    await prisma.task.findUnique({ where: { id } });
 
 export { createOneTask, findOneTaskByKey, findOneTaskById };
