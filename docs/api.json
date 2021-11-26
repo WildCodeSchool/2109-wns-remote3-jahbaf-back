@@ -54,5 +54,21 @@
             "returns": "{ task: Task }"
         }
     },
+    "tasks": {},
+    "taskStatus": {
+        "createTaskStatus": {
+            "type": "Mutation",
+            "description": "Create new task status",
+            "usage": "createTaskStatus(taskStatusInput: TaskStatusInput!)",
+            "returns": "{ createTaskStatus: TaskStatus }",
+            "exceptions": [
+                {
+                    "name": "AlreadyExistsException",
+                    "description": "This task status already exists",
+                    "code": 3001
+                }
+            ]
+        }
+    },
     "sprint": {}
 }

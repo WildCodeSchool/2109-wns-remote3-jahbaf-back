@@ -1,4 +1,4 @@
-import { TaskInput, ProjectInput } from './types';
+import { TaskInput, ProjectInput, TaskStatusInput } from './types';
 
 export interface ICreateUserArgs {
     name: string;
@@ -21,6 +21,15 @@ export interface ProjectCreatePayLoad {
     project: Project;
 }
 
+export interface TaskStatus {
+    id: string;
+    name: string;
+    projectId: string;
+}
+
+export interface CreateTaskStatusArgs {
+    taskStatusInput: TaskStatusInput;
+}
 export interface Task {
     id: string;
     createdAt: Date;
