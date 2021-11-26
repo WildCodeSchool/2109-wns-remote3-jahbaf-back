@@ -15,5 +15,5 @@ export const createProjectService = async (
 
 export const findManyProjectService = async (): Promise<Project[]> => {
     console.log('Trying to fetch many projects !');
-    return  await findManyProjects(); 
+    return await findManyProjects();
 };
