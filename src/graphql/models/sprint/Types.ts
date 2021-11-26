@@ -1,16 +1,16 @@
 const Sprint = `
     type Sprint {
         id: ID!
-        startDate: String!
-        endDate: String!
+        startDate: Date!
+        endDate: Date!
         projectId: ID!
     }
 `;
 
 const SprintInput = `
     input SprintInput {
-        startDate: String!
-        endDate: String!
+        startDate: Date!
+        endDate: Date!
         projectId: ID!
     }
 `;
