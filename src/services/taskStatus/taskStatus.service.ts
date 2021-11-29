@@ -1,6 +1,6 @@
 import { TaskAlreadyExistsException } from 'src/exceptions';
 import { TaskStatusInput } from 'src/types';
-import { createOneTaskStatus, findProjectTaskStatusByName } from 'src/repositories/taskStatus/taskStatus.repository';
+import { createOneTaskStatus, findProjectTaskStatusByName, findManyTaskStatus } from 'src/repositories';
 import { TaskStatus } from 'src/interfaces';
 
 export const createTaskStatusService = async (taskStatusInput: TaskStatusInput):Promise<TaskStatus> => {
@@ -9,4 +9,8 @@ export const createTaskStatusService = async (taskStatusInput: TaskStatusInput):
         throw new TaskAlreadyExistsException();
     }
     return await createOneTaskStatus(taskStatusInput);
+};
+
+export const findManyTaskStatusService = async (): Promise<TaskStatus[]> => {
+    return await findManyTaskStatus();
 };
