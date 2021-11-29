@@ -13,6 +13,19 @@
                 }
             ]
         },
+        "updateResolver": {
+            "type": "Mutation",
+            "description": "Update partially an existing project",
+            "usage": "updateProject(projectInput: UpdateProjectInput!)",
+            "returns": "{ updateProject: Project }",
+            "exceptions": [
+                {
+                    "name": "ProjectNotFoundException",
+                    "description": "The project id provided doesn't exist",
+                    "code": 2002
+                }
+            ]
+        },
         "findManyProjects": {
             "type": "Query",
             "description": "Find many projects",
