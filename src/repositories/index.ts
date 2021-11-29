@@ -1,4 +1,4 @@
 export * from './AuthenticationRepository';
 export * from './SprintsRepository';
 export * from './ProjectRepository';
-export * from './taskStatus/taskStatus.repository';
+export * from './taskStatus';
