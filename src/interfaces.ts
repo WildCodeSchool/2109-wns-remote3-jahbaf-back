@@ -61,6 +61,6 @@ export interface CreateTaskArgs {
 }
 
 export interface AssignTaskStatusArgs {
-    readonly taskId: string;
-    readonly taskStatusId: string;
+    taskId: string;
+    taskStatusId: string;
 }
