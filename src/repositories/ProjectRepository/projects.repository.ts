@@ -24,6 +24,7 @@ export const updateOneProject = async (
         },
         data: {
             ...projectInput,
+            updatedAt: new Date(),
         },
     });
 };
