@@ -10,6 +10,7 @@ export const Mutation = `
     createSprint(sprintInput: SprintInput!): Sprint!
     createTask(taskInput: TaskInput): Task!
     createProject(projectInput: ProjectInput! ): Project!
+    updateProject(projectInput: UpdateProjectInput!): Project!
     createTaskStatus(taskStatusInput: TaskStatusInput!): TaskStatus!
   }
 `;
