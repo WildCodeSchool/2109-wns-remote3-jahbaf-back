@@ -1,6 +1,6 @@
 import { prisma } from 'src/client';
 import { Task } from '.prisma/client';
-import { TaskInput } from 'src/types';
+import { TaskInput, UpdateTaskInput } from 'src/types';
 
 const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
     return await prisma.task.create({
@@ -41,4 +41,17 @@ const findOneTaskByKey = async (
 const findOneTaskById = async (id: string): Promise<Task | null> =>
     await prisma.task.findUnique({ where: { id } });
 
-export { createOneTask, findOneTaskByKey, findOneTaskById };
+const updateOneTask = async (
+    taskUpdateInput: UpdateTaskInput
+): Promise<Task> => {
+    return await prisma.task.update({
+        where: {
+            id: taskUpdateInput.id,
+        },
+        data: {
+            ...taskUpdateInput,
+        },
+    });
+};
+
+export { createOneTask, findOneTaskByKey, findOneTaskById, updateOneTask };

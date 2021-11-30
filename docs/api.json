@@ -13,6 +13,19 @@
                 }
             ]
         },
+        "updateResolver": {
+            "type": "Mutation",
+            "description": "Update partially an existing project",
+            "usage": "updateProject(projectInput: UpdateProjectInput!)",
+            "returns": "{ updateProject: Project }",
+            "exceptions": [
+                {
+                    "name": "ProjectNotFoundException",
+                    "description": "The project id provided doesn't exist",
+                    "code": 2002
+                }
+            ]
+        },
         "findManyProjects": {
             "type": "Query",
             "description": "Find many projects",
@@ -52,9 +65,26 @@
             "description": "Select one task by id",
             "usage": "selectOneTask(id: String!)",
             "returns": "{ task: Task }"
+        },
+        "assignTaskStatus": {
+            "type": "Mutation",
+            "description": "Assign a task status to a task",
+            "usage": "assignTaskStatus(taskId: String!, taskStatusId: String!)",
+            "returns": "{ assignTaskStatus: Task }",
+            "exceptions": [
+                {
+                    "name": "UnknownTaskException",
+                    "description": "The task doesn't exist",
+                    "code": 4001
+                },
+                {
+                    "name": "UnknownTaskStatusException",
+                    "description": "The task status doesn't exist",
+                    "code": 3002
+                }
+            ]
         }
     },
-    "tasks": {},
     "taskStatus": {
         "createTaskStatus": {
             "type": "Mutation",
@@ -85,5 +115,21 @@
             ]
         }
     },
-    "sprint": {}
+
+    "sprint": {
+        "createSprint": {
+            "type": "Mutation",
+            "description": "Create a sprint onto an existing project",
+            "usage": "createSprint(sprintInput: SprintInput!)",
+            "returns": "{ createSprint: Sprint }",
+            "exceptions": [
+                {
+                    "name": "InvalidDateFormatException",
+                    "description": "The date format entered by the user is not valid",
+                    "code": 2002
+                }
+            ]
+        }
+    }
+
 }

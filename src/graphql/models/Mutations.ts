@@ -6,9 +6,12 @@
  */
 export const Mutation = `
   type Mutation {
-signUp(name: String, email: String!, password: String!): AuthPayload!
+    signUp(name: String, email: String!, password: String!): AuthPayload!
+    createSprint(sprintInput: SprintInput!): Sprint!
     createTask(taskInput: TaskInput): Task!
     createProject(projectInput: ProjectInput! ): Project!
+    updateProject(projectInput: UpdateProjectInput!): Project!
     createTaskStatus(taskStatusInput: TaskStatusInput!): TaskStatus!
+    assignTaskStatus(taskId: String!, taskStatusId: String!): Task!
   }
 `;
