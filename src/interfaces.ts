@@ -59,3 +59,8 @@ export interface Task {
 export interface CreateTaskArgs {
     taskInput: TaskInput;
 }
+
+export interface AssignTaskStatusArgs {
+    taskId: string;
+    taskStatusId: string;
+}

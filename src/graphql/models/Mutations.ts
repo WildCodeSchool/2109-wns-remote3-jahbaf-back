@@ -11,5 +11,6 @@ export const Mutation = `
     createTask(taskInput: TaskInput): Task!
     createProject(projectInput: ProjectInput! ): Project!
     createTaskStatus(taskStatusInput: TaskStatusInput!): TaskStatus!
+    assignTaskStatus(taskId: String!, taskStatusId: String!): Task!
   }
 `;
