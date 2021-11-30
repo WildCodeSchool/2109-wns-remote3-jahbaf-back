@@ -1,4 +1,10 @@
-import { TaskInput, ProjectInput, TaskStatusInput, SprintInput } from './types';
+import {
+    TaskInput,
+    ProjectInput,
+    TaskStatusInput,
+    SprintInput,
+    UpdateProjectInput,
+} from './types';
 
 export interface ICreateUserArgs {
     name: string;
@@ -27,6 +33,10 @@ export interface Project {
     name: string;
     description: string | null;
     published: boolean;
+}
+
+export interface UpdateProjectArgs {
+    projectInput: UpdateProjectInput;
 }
 
 export interface ProjectCreatePayLoad {

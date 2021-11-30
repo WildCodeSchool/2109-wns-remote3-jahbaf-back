@@ -1,7 +1,15 @@
-import { MissingMandatoryFieldException, ProjectNotFoundException } from 'src/exceptions';
+import {
+    MissingMandatoryFieldException,
+    ProjectNotFoundException,
+} from 'src/exceptions';
 import { Project } from 'src/interfaces';
-import { createOneProject, findManyProjects, findProjectById } from 'src/repositories';
-import { ProjectInput } from 'src/types';
+import {
+    createOneProject,
+    findManyProjects,
+    findProjectById,
+    updateOneProject,
+} from 'src/repositories';
+import { ProjectInput, UpdateProjectInput } from 'src/types';
 
 export const createProjectService = async (
     projectInput: ProjectInput
@@ -11,6 +19,15 @@ export const createProjectService = async (
         throw new MissingMandatoryFieldException();
     }
     return await createOneProject(projectInput);
+};
+
+export const updateProjectService = async (
+    projectInput: UpdateProjectInput
+): Promise<Project> => {
+    if (!(await findProjectByIdService(projectInput.id))) {
+        throw new ProjectNotFoundException();
+    }
+    return await updateOneProject(projectInput);
 };
 
 export const findManyProjectService = async (): Promise<Project[]> => {
@@ -23,7 +40,7 @@ export const findManyProjectService = async (): Promise<Project[]> => {
 export const findProjectByIdService = async (id: string): Promise<Project> => {
     console.log('Trying to fetch one project !');
     const project = await findProjectById(id);
-    if(!project) throw new ProjectNotFoundException();
+    if (!project) throw new ProjectNotFoundException();
     console.log('Project fetched successfully !');
     return project;
 };

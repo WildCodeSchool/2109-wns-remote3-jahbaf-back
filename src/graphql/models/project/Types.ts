@@ -22,4 +22,21 @@ const ProjectInput = `
     }
 `;
 
-export const ProjectTypes: string[] = [Project, ProjectInput];
+/**
+ * UpdateProjectInput type definition
+ * This is the type of input data of project passed to the updateProject resolver
+ */
+const UpdateProjectInput = `
+ input UpdateProjectInput {
+     id: ID!
+     name: String
+     description: String
+     published: Boolean
+ }
+`;
+
+export const ProjectTypes: string[] = [
+    Project,
+    ProjectInput,
+    UpdateProjectInput,
+];

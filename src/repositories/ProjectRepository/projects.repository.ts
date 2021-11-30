@@ -1,6 +1,6 @@
 import { prisma } from 'src/client';
 import { Project } from '.prisma/client';
-import { ProjectInput } from 'src/types';
+import { ProjectInput, UpdateProjectInput } from 'src/types';
 
 export const createOneProject = async (
     projectInput: ProjectInput
@@ -11,6 +11,20 @@ export const createOneProject = async (
             name,
             description: description || '',
             published,
+        },
+    });
+};
+
+export const updateOneProject = async (
+    projectInput: UpdateProjectInput
+): Promise<Project> => {
+    return await prisma.project.update({
+        where: {
+            id: projectInput.id,
+        },
+        data: {
+            ...projectInput,
+            updatedAt: new Date(),
         },
     });
 };
@@ -46,6 +60,6 @@ export const findProjectById = async (id: string) => {
             projectUsers: true,
             taskStatus: true,
             createdAt: true,
-        }
+        },
     });
 };
