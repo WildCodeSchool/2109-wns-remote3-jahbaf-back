@@ -3,6 +3,7 @@ import {
     ProjectNotFoundException,
 } from 'src/exceptions';
 import { Project } from 'src/interfaces';
+import { consoleLogger } from 'src/logger';
 import {
     createOneProject,
     findManyProjects,
@@ -31,16 +32,16 @@ export const updateProjectService = async (
 };
 
 export const findManyProjectService = async (): Promise<Project[]> => {
-    console.log('Trying to fetch many projects !');
+    consoleLogger.info('Trying to fetch many projects !');
     const manyProjects = await findManyProjects();
-    console.log('Projects fetched successfully !');
+    consoleLogger.info('Projects fetched successfully !');
     return manyProjects;
 };
 
 export const findProjectByIdService = async (id: string): Promise<Project> => {
-    console.log('Trying to fetch one project !');
+    consoleLogger.info('Trying to fetch one project !');
     const project = await findProjectById(id);
     if (!project) throw new ProjectNotFoundException();
-    console.log('Project fetched successfully !');
+    consoleLogger.info('Project fetched successfully !');
     return project;
 };

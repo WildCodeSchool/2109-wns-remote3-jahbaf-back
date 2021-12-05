@@ -6,24 +6,12 @@ import { dateScalar } from 'src/resolvers/dateType/dateScalar.type';
 import * as Query from './resolvers/Query';
 import * as Mutation from './resolvers/Mutation';
 
-/** Logger related imports */
-// import fs from 'fs';
-// import morgan from 'morgan';
-
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
 async function startServer() {
     const app = express();
-
-    /**
-     * Those two lines are defining the logger system, it will create an access.log file at the root of the project
-     * Leave this commented if you use Apollo studio to check your queries since Apollo studio loop requests, you may end up with an enormous file.
-     * Comment it out if you want to log the calls you make on the front end.
-     */
-    // const accessLogStream = fs.createWriteStream('./access.log', {flags: 'a'});
-    // app.use(morgan('combined',{stream: accessLogStream}));
 
     /** *
      * Cette instance d'apollo server prend 3 paramètres:
