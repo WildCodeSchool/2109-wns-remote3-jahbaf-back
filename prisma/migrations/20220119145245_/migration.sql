@@ -1,63 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Project` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Project_User` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Role` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Sprint` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Task` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `TaskStatus` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "Project_User" DROP CONSTRAINT "Project_User_project_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "Project_User" DROP CONSTRAINT "Project_User_role_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "Project_User" DROP CONSTRAINT "Project_User_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "Sprint" DROP CONSTRAINT "Sprint_project_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "Task" DROP CONSTRAINT "Task_project_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "Task" DROP CONSTRAINT "Task_sprint_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "Task" DROP CONSTRAINT "Task_status_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "Task" DROP CONSTRAINT "Task_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "TaskStatus" DROP CONSTRAINT "TaskStatus_project_id_fkey";
-
--- DropTable
-DROP TABLE "Project";
-
--- DropTable
-DROP TABLE "Project_User";
-
--- DropTable
-DROP TABLE "Role";
-
--- DropTable
-DROP TABLE "Sprint";
-
--- DropTable
-DROP TABLE "Task";
-
--- DropTable
-DROP TABLE "TaskStatus";
-
--- DropTable
-DROP TABLE "User";
-
 -- CreateTable
 CREATE TABLE "role" (
     "id" SERIAL NOT NULL,
@@ -106,7 +46,7 @@ CREATE TABLE "sprint" (
     "id" TEXT NOT NULL,
     "start_date" TIMESTAMP(3) NOT NULL,
     "end_date" TIMESTAMP(3) NOT NULL,
-    "description" TEXT NOT NULL,
+    "description" TEXT,
     "project_id" TEXT NOT NULL,
 
     CONSTRAINT "sprint_pkey" PRIMARY KEY ("id")
@@ -116,7 +56,7 @@ CREATE TABLE "sprint" (
 CREATE TABLE "taskstatus" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "projectId" TEXT,
+    "projectId" TEXT NOT NULL,
 
     CONSTRAINT "taskstatus_pkey" PRIMARY KEY ("id")
 );
@@ -125,14 +65,15 @@ CREATE TABLE "taskstatus" (
 CREATE TABLE "task" (
     "id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "status_id" TEXT NOT NULL,
-    "sprint_id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "points" INTEGER NOT NULL,
-    "priority" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "status_id" TEXT,
+    "sprint_id" TEXT,
     "project_id" TEXT NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "user_id" TEXT,
+    "title" TEXT NOT NULL,
+    "points" INTEGER,
+    "priority" TEXT,
+    "description" TEXT,
 
     CONSTRAINT "task_pkey" PRIMARY KEY ("id")
 );
@@ -153,16 +94,16 @@ ALTER TABLE "project_user" ADD CONSTRAINT "project_user_role_id_fkey" FOREIGN KE
 ALTER TABLE "sprint" ADD CONSTRAINT "sprint_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "taskstatus" ADD CONSTRAINT "taskstatus_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "taskstatus" ADD CONSTRAINT "taskstatus_projectId_fkey" FOREIGN KEY ("projectId") REFERENCES "project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "task" ADD CONSTRAINT "task_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "taskstatus"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "task" ADD CONSTRAINT "task_status_id_fkey" FOREIGN KEY ("status_id") REFERENCES "taskstatus"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "task" ADD CONSTRAINT "task_sprint_id_fkey" FOREIGN KEY ("sprint_id") REFERENCES "sprint"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "task" ADD CONSTRAINT "task_sprint_id_fkey" FOREIGN KEY ("sprint_id") REFERENCES "sprint"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "task" ADD CONSTRAINT "task_project_id_fkey" FOREIGN KEY ("project_id") REFERENCES "project"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "task" ADD CONSTRAINT "task_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "task" ADD CONSTRAINT "task_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE;

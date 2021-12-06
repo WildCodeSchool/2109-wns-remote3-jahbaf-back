@@ -1,6 +1,9 @@
 /node_modules
 /build
-/.env
+
+/coverage
+
+/config/prod.env
 
 error.log
 access.log

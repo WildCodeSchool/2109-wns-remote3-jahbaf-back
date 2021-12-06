@@ -16,7 +16,7 @@ export const createProjectService = async (
     projectInput: ProjectInput
 ): Promise<Project> => {
     const { name } = projectInput;
-    if (!name) {
+    if (!name || !name.length) {
         throw new MissingMandatoryFieldException();
     }
     return await createOneProject(projectInput);

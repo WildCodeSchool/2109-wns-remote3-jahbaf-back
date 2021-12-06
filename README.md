@@ -1,14 +1,29 @@
-# Some instructions
+# Instructions
 
-If you want to use Docker for the database there is already a docker-compose file running a postgres container.
-To launch it simply run the following command:
+## Start
+
+To start the application simply run the following command :
 ```
-docker compose up
+yarn start
 ```
 
-You need to have a .env file at the root of the project containing the DB url in the DATABASE_URL property for prisma to work properly.
-Database user, password and DB name are already defined inside the docker-compose file, if you use those the url is this :
+This command will automatically start the postgres docker container, do the migration and start your server.
+
+## Tests
+
+To test the application use the following command :
+```
+yarn test
+```
+
+Like with start this command will launch the postgres test database on a docker container, do the migration and start the test suites.
+
+We're also able to get coverage reports with this command :
 
 ```
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/jahbaf
+yarn test:coverage
 ```
+
+## Environment files
+
+Test and dev environment files are now public, we will have a prod.env file on production which will be private, this makes it easy for us to share dev/test environment files across the team.
