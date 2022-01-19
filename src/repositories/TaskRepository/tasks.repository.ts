@@ -1,6 +1,7 @@
 import { prisma } from 'src/client';
 import { Task } from '.prisma/client';
 import { TaskInput, UpdateTaskInput } from 'src/types';
+import { consoleLogger } from 'src/logger';
 
 const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
     return await prisma.task.create({
@@ -26,7 +27,7 @@ const findOneTaskByKey = async (
      */
     title: string
 ): Promise<Task | null> => {
-    console.log('In repo, finding');
+    consoleLogger.info('In repo, finding');
     return await prisma.task.findFirst({
         where: {
             /* 

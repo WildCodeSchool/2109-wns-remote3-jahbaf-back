@@ -1,4 +1,5 @@
 import { Task } from 'src/interfaces';
+import { accessLogger, errorLogger } from 'src/logger';
 import { selectOneTaskService } from 'src/services';
 
 export const selectOneTask = async (
@@ -6,9 +7,10 @@ export const selectOneTask = async (
     { id }: { [id: string]: string }
 ): Promise<Task | null> => {
     try {
+        accessLogger.info('selectOneTask');
         return await selectOneTaskService(id);
-    } catch (e) {
-        console.log(e);
+    } catch (e: any) {
+        errorLogger.error(e.message, { code: e.code });
         throw e;
     }
 };
