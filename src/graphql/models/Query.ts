@@ -7,6 +7,7 @@
  */
 export const Query = `
   type Query {
+    self(id: String!): AuthPayload!
     findManyProjects: [Project!]!
     findProjectById(id: String!): Project!
     selectOneTask(id: String!): Task!
