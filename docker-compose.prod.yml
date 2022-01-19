@@ -10,29 +10,30 @@ services:
       retries: 10 
     ports:
       - "5432:5432"
-    env_file:
-      - .env
+    environment:
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
     volumes:
-      - ./data/postgres:/postgresql/data
+      - ./data/postgre:/postgresql/data
   front:
     image: jahbaf-client
-    container_name: front
     ports:
       - "3000:3000"
     depends_on:
-      - back
+      back:
+        condition: service_healthy
     volumes:
       - ../2109-wns-remote3-jahbaf-client:/app/front
   back:
     image: jahbaf-back
-    container_name: back
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:4004/graphql?query=%7B__typename%7D || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:4004 || exit 1"]
       interval: 10s
       timeout: 10s
-      retries: 6 
-    env_file:
-      - .env
+      retries: 10 
+    environment:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     ports:
       - "4004:4000"
     depends_on:

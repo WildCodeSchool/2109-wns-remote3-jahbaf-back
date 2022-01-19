@@ -1,0 +1,10 @@
+/node_modules
+/.husky
+/docs
+.prettier*
+.eslint*
+README.md
+.git
+.gitignore
+.env
+docker-compose.yml
