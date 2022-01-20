@@ -2,6 +2,7 @@ import { Task } from 'src/interfaces';
 import {
     createOneTask,
     findOneTaskById,
+    findAllTasksFromProject,
     updateOneTask,
 } from 'src/repositories/TaskRepository';
 import { TaskInput, UpdateTaskInput } from 'src/types';
@@ -20,8 +21,9 @@ export const createTaskService = async (
     return await createOneTask(taskInput);
 };
 
-export const selectOneTaskService = async (id: string): Promise<Task | null> =>
-    await findOneTaskById(id);
+export const selectOneTaskService = async (id: string): Promise<Task | null> => await findOneTaskById(id);
+
+export const selectAllTasksFromProjectService = async (id: string): Promise<Task[] | null> => await findAllTasksFromProject(id);
 
 export const updateTaskService = async (
     updateInput: UpdateTaskInput
