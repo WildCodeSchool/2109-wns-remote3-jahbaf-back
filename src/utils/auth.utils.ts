@@ -63,7 +63,7 @@ function getTokenPayload(token: string): Token {
     return jwt.verify(token, APP_TOKENIZATION_SECRET) as Token;
 }
 
-export async function getUserId(req: express.Request, res: express.Response, prisma: PrismaClient) {
+export async function getUserIdFromToken(req: express.Request, res: express.Response, prisma: PrismaClient) {
     const token = req.cookies.session_id;
     if (token) {
         const { userId, expiresIn, emittedAt } = getTokenPayload(token);

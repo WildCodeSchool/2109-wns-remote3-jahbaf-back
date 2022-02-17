@@ -1,8 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Request, Response } from 'express';
-import httpContext from 'express-http-context';
 import { prisma } from '../client';
-import { getUserId } from './auth.utils';
+import { getUserIdFromToken } from './auth.utils';
 
 export interface Context {
   prisma: PrismaClient
@@ -14,11 +13,10 @@ export interface Context {
 export async function createContext(context: Context) {
     let userId;
     try {
-        userId = context.req.cookies && await getUserId(context.req, context.res, prisma);
+        userId = context.req.cookies && await getUserIdFromToken(context.req, context.res, prisma);
     } catch (e) {
         userId = '';
     }
-    httpContext.set('userId', userId);
     return {
         ...context,
         prisma,
