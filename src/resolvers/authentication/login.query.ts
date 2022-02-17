@@ -1,11 +1,7 @@
-import { accessLogger, errorLogger } from 'src/logger';
-import { loginService } from 'src/services';
-import { Context } from 'src/utils/context.utils';
-
-interface LoginArgs {
-  email: string,
-  password: string,
-}
+import { LoginArgs } from '../../interfaces';
+import { accessLogger, errorLogger } from '../../logger';
+import { loginService } from '../../services';
+import { Context } from '../../utils/context.utils';
 
 async function login(parent: any, { email, password }: LoginArgs, context: Context) {
     try {

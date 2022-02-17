@@ -1,11 +1,10 @@
-import { ICreateUserArgs } from 'src/interfaces';
+import { DeleteUserArgs, ICreateUserArgs } from '../../interfaces';
 import { createOneUser, deleteOneUserById } from '../../repositories';
-import { DeleteUserArgs } from 'src/resolvers/authentication/deleteUser.mutation';
 import { authenticateUser, COOKIE_SETTINGS, createToken } from 'src/utils/auth.utils';
-import { Context } from 'src/utils/context.utils';
+import { Context } from '../../utils/context.utils';
 import { formatEmail, hashPassword } from './helpers';
 import { ApolloError } from 'apollo-server-express';
-import { accessLogger, errorLogger } from 'src/logger';
+import { accessLogger, errorLogger } from '../../logger';
 import { UserCouldNotBeAuthenticated, UserCouldNotBeCreated } from 'src/exceptions';
 
 export const signUpService = async ({ email, password, name }: ICreateUserArgs) => {

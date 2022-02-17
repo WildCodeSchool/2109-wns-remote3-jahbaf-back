@@ -1,11 +1,7 @@
-import { accessLogger, errorLogger } from 'src/logger';
+import { DeleteUserArgs } from '../../interfaces';
+import { accessLogger, errorLogger } from '../../logger';
 import { deleteUserService } from '../../services';
 import { Context } from '../../utils/context.utils';
-
-export interface DeleteUserArgs {
-  email: string,
-  password: string,
-}
 
 export async function deleteUser(parent: any, { email, password }: DeleteUserArgs, context: Context) {
     try {
