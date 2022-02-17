@@ -101,6 +101,19 @@
         }
     },
     "authentication": {
+        "login": {
+            "type": "Query",
+            "description": "Login user",
+            "usage": "login(email: String!, password: String!)",
+            "returns": "AuthPayload!",
+            "exceptions": [
+                {
+                    "name": "UserNotFoundException",
+                    "description": "Cet utilisateur n'existe pas",
+                    "code": 1001
+                }
+            ]
+        },
         "self": {
             "type": "Query",
             "description": "Return user's data",
@@ -113,23 +126,47 @@
                     "code": 1001
                 }
             ]
-        }
-    },
-
-    "sprint": {
-        "createSprint": {
+        },
+        "signup": {
             "type": "Mutation",
-            "description": "Create a sprint onto an existing project",
-            "usage": "createSprint(sprintInput: SprintInput!)",
-            "returns": "{ createSprint: Sprint }",
+            "description": "Signup user",
+            "usage": "Signup(email: String!, password: String!)",
+            "returns": "AuthPayload!",
             "exceptions": [
                 {
-                    "name": "InvalidDateFormatException",
-                    "description": "The date format entered by the user is not valid",
-                    "code": 2002
+                    "name": "UserAlreadyExistsException",
+                    "description": "Cet utilisateur existe déjà",
+                    "code": 1002
                 }
             ]
+        },
+        "deleteUser": {
+            "type": "Mutation",
+            "description": "Delete user",
+            "usage": "deleteUser(email: String!, password: String!)",
+            "returns": "Message",
+            "exceptions": [
+                {
+                    "name": "UserNotFoundException",
+                    "description": "Cet utilisateur n'existe pas",
+                    "code": 1001
+                }
+            ]
+        },
+        "sprint": {
+            "createSprint": {
+                "type": "Mutation",
+                "description": "Create a sprint onto an existing project",
+                "usage": "createSprint(sprintInput: SprintInput!)",
+                "returns": "{ createSprint: Sprint }",
+                "exceptions": [
+                    {
+                        "name": "InvalidDateFormatException",
+                        "description": "The date format entered by the user is not valid",
+                        "code": 2002
+                    }
+                ]
+            }
         }
     }
-
 }
