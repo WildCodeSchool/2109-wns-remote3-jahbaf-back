@@ -11,5 +11,6 @@ export const Query = `
     findManyProjects: [Project!]!
     findProjectById(id: String!): Project!
     selectOneTask(id: String!): Task!
+    selectAllTasksFromProject(id: String!): [Task]!
   }
 `;

@@ -39,8 +39,9 @@ const findOneTaskByKey = async (
     });
 };
 
-const findOneTaskById = async (id: string): Promise<Task | null> =>
-    await prisma.task.findUnique({ where: { id } });
+const findOneTaskById = async (id: string): Promise<Task | null> => await prisma.task.findUnique({ where: { id } });
+
+const findAllTasksFromProject = async (id: string): Promise<Task[] | null> => await prisma.task.findMany({ where: { projectId: id } });
 
 const updateOneTask = async (
     taskUpdateInput: UpdateTaskInput
@@ -55,4 +56,4 @@ const updateOneTask = async (
     });
 };
 
-export { createOneTask, findOneTaskByKey, findOneTaskById, updateOneTask };
+export { createOneTask, findOneTaskByKey, findOneTaskById, updateOneTask, findAllTasksFromProject };
