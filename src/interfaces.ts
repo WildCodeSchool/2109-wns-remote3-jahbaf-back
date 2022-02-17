@@ -7,9 +7,19 @@ import {
 } from './types';
 
 export interface ICreateUserArgs {
-    name: string;
+    name?: string;
     email: string;
     password: string;
+}
+
+export interface LoginArgs {
+    email: string,
+    password: string,
+}
+
+export interface DeleteUserArgs {
+  email: string,
+  password: string,
 }
 
 export interface Sprint {
