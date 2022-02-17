@@ -5,6 +5,7 @@ import { typeDefs } from './graphql/models';
 import { dateScalar } from 'src/resolvers/dateType/dateScalar.type';
 import * as Query from './resolvers/Query';
 import * as Mutation from './resolvers/Mutation';
+import { createContext } from './utils/context.utils';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ async function startServer() {
     const apolloServer = new ApolloServer({
         typeDefs,
         resolvers: { Query, Mutation, Date: dateScalar },
+        context: createContext
     });
 
     await apolloServer.start();
@@ -30,8 +32,11 @@ async function startServer() {
         app,
         cors: {
             credentials: true,
-            // Target front-end in production
-            origin: '*',
+            origin: [
+                process.env.FRONTEND_URL || 
+                'http://localhost:3000' ||
+                'https://studio.apollographql.com',
+            ],
         },
     });
 
