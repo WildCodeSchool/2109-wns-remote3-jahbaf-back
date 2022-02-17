@@ -13,5 +13,6 @@ export const Mutation = `
     updateProject(projectInput: UpdateProjectInput!): Project!
     createTaskStatus(taskStatusInput: TaskStatusInput!): TaskStatus!
     assignTaskStatus(taskId: String!, taskStatusId: String!): Task!
+    deleteUser(email: String!, password: String!): Message!
   }
 `;
