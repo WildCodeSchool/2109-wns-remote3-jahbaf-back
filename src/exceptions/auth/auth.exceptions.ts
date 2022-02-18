@@ -19,3 +19,4 @@ export class UserCouldNotBeAuthenticated extends Error {
     code = USER_COULD_NOT_BE_AUTHENTICATED;
     message = 'Cet utilisateur n\'a pas pu être authentifié';
 }
+
