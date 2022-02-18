@@ -14,7 +14,7 @@ export async function createContext(context: Context) {
     let userId;
     try {
         userId = context.req.cookies && await getUserIdFromToken(context.req, context.res, prisma);
-    } catch (e) {
+    } catch {
         userId = '';
     }
     return {

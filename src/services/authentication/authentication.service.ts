@@ -50,3 +50,8 @@ export async function deleteUserService({ email, password }: DeleteUserArgs, con
     await deleteOneUserById({ id }, context.prisma);
     accessLogger.info('User deleted successfully', { email });
 }
+
+
+export function logoutService(context: Context) {
+    context.res.clearCookie('session_id', COOKIE_SETTINGS);
+}

@@ -1,7 +1,17 @@
+/**
+ * Message type definition
+ */
 const Message = `
   type Message {
     message: String
   }
 `;
 
-export const UtilsTypes: string[] = [Message];
+/**
+* Void scalar definition
+*/
+export const Void = `
+scalar Void
+`;
+
+export const UtilsTypes: string[] = [Message, Void];

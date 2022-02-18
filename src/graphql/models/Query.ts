@@ -13,5 +13,6 @@ export const Query = `
     selectOneTask(id: String!): Task!
     login(email: String!, password: String!): AuthPayload!
     selectAllTasksFromProject(id: String!): [Task]!
+    logout: Void
   }
 `;
