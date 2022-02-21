@@ -8,9 +8,5 @@ export const createOneUser = async ({ email, password, name = '' }: ICreateUserA
             password,
             name: name,
         },
-        select: {
-            id: true,
-            email: true,
-        },
     });
 };

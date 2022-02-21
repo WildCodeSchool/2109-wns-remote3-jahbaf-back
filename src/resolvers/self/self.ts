@@ -1,7 +1,7 @@
-import { User } from '.prisma/client';
 import { UserNotFoundException } from 'src/exceptions';
 import { oneUserById } from 'src/repositories/AuthenticationRepository/oneUserById.repository';
 import { Context } from 'src/utils/context.utils';
+import { getTokenPayload } from '../../utils/auth.utils';
 
 
 /**
@@ -12,10 +12,14 @@ async function self(
     args: any,
     context: Context,
 ) {
-    const { userId } = context;
-    if(!userId) throw new UserNotFoundException();
+    const token = context.req.headers.authorization;
+    if (!token) throw new Error('No token provided');
+    const { userId } = getTokenPayload(token);
+    if (!userId) throw new UserNotFoundException();
     const user = await oneUserById({ id: userId }, context.prisma);
-    return user;
+    return {
+        user
+    };
 }
 
 export { self };

@@ -6,8 +6,8 @@ import { Context } from '../../utils/context.utils';
 async function login(parent: any, { email, password }: LoginArgs, context: Context) {
     try {
         accessLogger.info('login');
-        const user = await loginService(email, password, context);
-        return user;
+        const token = await loginService(email, password, context);
+        return token;
     } catch(e: any) {
         errorLogger.error(e.message, { code: e.code });
         throw e;

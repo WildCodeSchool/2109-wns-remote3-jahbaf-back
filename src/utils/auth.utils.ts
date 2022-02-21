@@ -59,7 +59,7 @@ function isTokenExpired(expiresIn: number, emittedAt: number) {
     return Date.now() > ((expiresIn * 1000) + emittedAt);
 }
 
-function getTokenPayload(token: string): Token {
+export function getTokenPayload(token: string): Token {
     return jwt.verify(token, APP_TOKENIZATION_SECRET) as Token;
 }
 
@@ -89,7 +89,7 @@ export interface LoginVariables {
 }
 
 export async function authenticateUser({ email, password }: LoginVariables, context: Context) {
-    const user = await oneUserByEmail({ email: formatEmail(email) }, context.prisma);
+    const user = await oneUserByEmail({ email: formatEmail(email) });
     const valid = await bcrypt.compare(password, user?.password || '');
     if (!user || !valid) {
         console.warn('Incorrect email or password');
