@@ -17,18 +17,17 @@ export const signUpService = async ({ email, password, name }: ICreateUserArgs, 
         throw new UserCouldNotBeCreated();
     }
     const token = createToken(user);
-    context.res.cookie('session_id', token, COOKIE_SETTINGS);
     accessLogger.info('User signed up successfully', { email });
-    return user;
+    return token;
 };
 
 
-export async function loginService(email: string, password: string, context: Context) {
+export async function loginService(email: string, password: string) {
     accessLogger.info('Trying to authenticate user', { email });
     const user = await authenticateUser({
         email: formatEmail(email),
         password,
-    }, context);
+    });
     
     if (!user) {
         errorLogger.error('User could not be authenticated', { email });
@@ -39,16 +38,16 @@ export async function loginService(email: string, password: string, context: Con
     return token;
 }
 
-export async function deleteUserService({ email, password }: DeleteUserArgs, context: Context) {
+export async function deleteUserService({ email, password }: DeleteUserArgs) {
     accessLogger.info('Trying to delete user', { email });
     const { id } = await authenticateUser({
         email: formatEmail(email),
         password,
-    }, context);
+    });
     if (!id) {
         errorLogger.error('User could not be authenticated', { email });
         throw new ApolloError('User could not be authenticated !');}
-    await deleteOneUserById({ id }, context.prisma);
+    await deleteOneUserById({ id });
     accessLogger.info('User deleted successfully', { email });
 }
 

@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from 'src/client';
 
 export interface UpdateUserByIdArgs {
   id: string,
@@ -11,7 +11,7 @@ export interface UpdateUserByIdArgs {
   }
 }
 
-export async function updateOneUserById({ id, data }: UpdateUserByIdArgs, prisma: PrismaClient) {
+export async function updateOneUserById({ id, data }: UpdateUserByIdArgs) {
     return prisma.user.update({
         where: {
             id,

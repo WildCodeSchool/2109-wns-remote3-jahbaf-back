@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from 'src/client';
 
-export function deleteOneUserById({ id }: { id: string }, prisma: PrismaClient) {
+export function deleteOneUserById({ id }: { id: string }) {
     return prisma.user.delete({
         where: {
             id

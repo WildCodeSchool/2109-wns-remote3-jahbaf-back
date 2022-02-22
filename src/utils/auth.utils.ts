@@ -5,9 +5,8 @@ import {
     UserInputError,
 } from 'apollo-server-core';
 import bcrypt from 'bcryptjs';
-import { PrismaClient, User } from '.prisma/client';
+import { User } from '.prisma/client';
 import { oneUserByEmail, oneUserById } from 'src/repositories';
-import { Context } from './context.utils';
 
 export function formatEmail(email: string) {
     return email.toLowerCase().trim();
@@ -63,7 +62,7 @@ export function getTokenPayload(token: string): Token {
     return jwt.verify(token, APP_TOKENIZATION_SECRET) as Token;
 }
 
-export async function getUserIdFromToken(req: express.Request, res: express.Response, prisma: PrismaClient) {
+export async function getUserIdFromToken(req: express.Request, res: express.Response) {
     const token = req.cookies.session_id;
     if (token) {
         const { userId, expiresIn, emittedAt } = getTokenPayload(token);
@@ -72,7 +71,7 @@ export async function getUserIdFromToken(req: express.Request, res: express.Resp
             console.warn('Session expired');
             throw new AuthenticationError('Session expired');
         }
-        const user = await oneUserById({ id: userId }, prisma);
+        const user = await oneUserById({ id: userId });
         if (!user) {
             res.clearCookie('session');
             console.warn('Session expired');
@@ -88,7 +87,7 @@ export interface LoginVariables {
   password: string
 }
 
-export async function authenticateUser({ email, password }: LoginVariables, context: Context) {
+export async function authenticateUser({ email, password }: LoginVariables) {
     const user = await oneUserByEmail({ email: formatEmail(email) });
     const valid = await bcrypt.compare(password, user?.password || '');
     if (!user || !valid) {
