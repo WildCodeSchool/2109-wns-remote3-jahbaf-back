@@ -1,15 +1,5 @@
 import { prisma } from 'src/client';
-
-export interface UpdateUserByIdArgs {
-  id: string,
-  data: {
-    password?: string,
-    lastPasswordReset?: Date,
-    last_activity?: Date,
-    is_active: boolean,
-    name?: string
-  }
-}
+import { UpdateUserByIdArgs } from 'src/interfaces';
 
 export async function updateOneUserById({ id, data }: UpdateUserByIdArgs) {
     return prisma.user.update({

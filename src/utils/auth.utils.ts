@@ -7,6 +7,7 @@ import {
 import bcrypt from 'bcryptjs';
 import { User } from '.prisma/client';
 import { oneUserByEmail, oneUserById } from 'src/repositories';
+import { LoginArgs } from 'src/interfaces';
 
 export function formatEmail(email: string) {
     return email.toLowerCase().trim();
@@ -14,17 +15,6 @@ export function formatEmail(email: string) {
 
 const ONE_WEEK_IN_SECONDS = 7 * 24 * 60 * 60;
 const APP_TOKENIZATION_SECRET: string = process.env.TOKEN_PRIVATE_KEY || 'secret';
-
-export const COOKIE_SETTINGS: CookieOptions = {
-    // cookie is valid for all subpaths of my domain
-    path: '/',
-    // this cookie won't be readable by the browser
-    httpOnly: true,
-    // and won't be usable outside of my domain
-    sameSite: 'none',
-    // HTTPS?
-    secure: true,
-};
 
 // Cache issues led to create this function to make sure the emittedAt key is always regenerated
 function generateTokenSettings() {
@@ -82,12 +72,7 @@ export async function getUserIdFromToken(req: express.Request, res: express.Resp
     return '';
 }
 
-export interface LoginVariables {
-  email: string,
-  password: string
-}
-
-export async function authenticateUser({ email, password }: LoginVariables) {
+export async function authenticateUser({ email, password }: LoginArgs) {
     const user = await oneUserByEmail({ email: formatEmail(email) });
     const valid = await bcrypt.compare(password, user?.password || '');
     if (!user || !valid) {

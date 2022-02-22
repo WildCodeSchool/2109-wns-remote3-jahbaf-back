@@ -6,7 +6,6 @@ export async function deleteUser(parent: any, { email, password }: DeleteUserArg
     try {
         accessLogger.info('deleteUser');
         await deleteUserService({email, password});
-        return { message: 'User deleted successfully' };
     } catch(e: any) {
         errorLogger.error(e.message, { code: e.code });
         throw e;

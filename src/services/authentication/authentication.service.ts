@@ -1,13 +1,11 @@
 import { DeleteUserArgs, ICreateUserArgs } from '../../interfaces';
 import { createOneUser, deleteOneUserById } from '../../repositories';
-import { authenticateUser, COOKIE_SETTINGS, createToken } from 'src/utils/auth.utils';
-import { Context } from '../../utils/context.utils';
+import { authenticateUser, createToken } from 'src/utils/auth.utils';
 import { formatEmail, hashPassword } from './helpers';
-import { ApolloError } from 'apollo-server-express';
 import { accessLogger, errorLogger } from '../../logger';
 import { UserCouldNotBeAuthenticated, UserCouldNotBeCreated } from 'src/exceptions';
 
-export const signUpService = async ({ email, password, name }: ICreateUserArgs, context: Context) => {
+export const signUpService = async ({ email, password, name }: ICreateUserArgs) => {
     accessLogger.info('Trying to signup user', { email });
     const hashedPassword = await hashPassword(password);
     const formatedEmail = formatEmail(email);
@@ -46,7 +44,7 @@ export async function deleteUserService({ email, password }: DeleteUserArgs) {
     });
     if (!id) {
         errorLogger.error('User could not be authenticated', { email });
-        throw new ApolloError('User could not be authenticated !');}
+        throw new UserCouldNotBeAuthenticated('User could not be authenticated !');}
     await deleteOneUserById({ id });
     accessLogger.info('User deleted successfully', { email });
 }

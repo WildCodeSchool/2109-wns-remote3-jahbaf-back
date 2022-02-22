@@ -1,4 +1,4 @@
-import { INVALID_EMAIL, USER_COULD_NOT_BE_AUTHENTICATED, USER_COULD_NOT_BE_CREATED, USER_NOT_FOUND } from './auth.codes';
+import { INVALID_EMAIL, MISSING_TOKEN, USER_COULD_NOT_BE_AUTHENTICATED, USER_COULD_NOT_BE_CREATED, USER_NOT_FOUND } from './auth.codes';
 
 export class InvalidEmailException extends Error {
     code = INVALID_EMAIL;
@@ -20,3 +20,7 @@ export class UserCouldNotBeAuthenticated extends Error {
     message = 'Cet utilisateur n\'a pas pu être authentifié';
 }
 
+export class MissingToken extends Error {
+    code = MISSING_TOKEN;
+    message = 'Aucun token n\'a été trouvé';
+}

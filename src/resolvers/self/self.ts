@@ -1,4 +1,4 @@
-import { UserNotFoundException } from 'src/exceptions';
+import { MissingToken, UserNotFoundException } from 'src/exceptions';
 import { oneUserById } from 'src/repositories/AuthenticationRepository/oneUserById.repository';
 import { Context } from 'src/utils/context.utils';
 import { getTokenPayload } from '../../utils/auth.utils';
@@ -13,10 +13,10 @@ async function self(
     context: Context,
 ) {
     const token = context.req.headers.authorization;
-    if (!token) throw new Error('No token provided');
+    if (!token) throw new MissingToken();
     const { userId } = getTokenPayload(token);
     if (!userId) throw new UserNotFoundException();
-    const user = await oneUserById({ id: userId }, context.prisma);
+    const user = await oneUserById({ id: userId });
     return {
         user
     };
