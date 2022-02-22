@@ -35,7 +35,6 @@ export async function loginService(email: string, password: string, context: Con
         throw new UserCouldNotBeAuthenticated();
     }
     const token = createToken(user);
-    console.log('USER_ID', context.userId);
     accessLogger.info('User authenticated successfully', { email });
     return token;
 }
@@ -53,7 +52,3 @@ export async function deleteUserService({ email, password }: DeleteUserArgs, con
     accessLogger.info('User deleted successfully', { email });
 }
 
-
-export function logoutService(context: Context) {
-    context.res.clearCookie('session_id', COOKIE_SETTINGS);
-}
