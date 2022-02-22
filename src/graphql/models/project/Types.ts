@@ -7,6 +7,17 @@ const Project = `
         name: String
         description: String
         published: Boolean
+        projectUsers: [ProjectUser]
+    }
+`;
+
+const ProjectUser = `
+    type ProjectUser {
+        id: Int!
+        roleId: Int!
+        projectId: String!
+        userId: String!
+        user: User
     }
 `;
 
@@ -19,6 +30,7 @@ const ProjectInput = `
         name: String!
         description: String
         published: Boolean
+        roleId: Int!
     }
 `;
 
@@ -35,8 +47,17 @@ const UpdateProjectInput = `
  }
 `;
 
+const AddUserToProjectInput = `
+ input AddUserToProjectInput {
+    roleId: Int!,
+    projectId: String!
+ }
+`;
+
 export const ProjectTypes: string[] = [
     Project,
     ProjectInput,
     UpdateProjectInput,
+    AddUserToProjectInput,
+    ProjectUser
 ];

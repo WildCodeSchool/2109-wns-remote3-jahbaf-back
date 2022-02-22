@@ -12,5 +12,7 @@ export const Query = `
     findProjectById(id: String!): Project!
     selectOneTask(id: String!): Task!
     selectAllTasksFromProject(id: String!): [Task]!
+    findRoleById(findRoleByIdInput: FindRoleByIdInput!): Role!
+    findAllRolesFromProject(projectId: String!): [Role]!
   }
 `;
