@@ -1,0 +1,13 @@
+{
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "moduleDirectories": ["node_modules", "."],
+    "coverageThreshold": {
+        "global": {
+            "branches": 75,
+            "functions": 75,
+            "lines": 75,
+            "statements": -10
+        }
+    }
+}

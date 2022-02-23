@@ -1,10 +1,10 @@
 /node_modules
 /.husky
 /docs
+/coverage
 .prettier*
 .eslint*
 README.md
 .git
 .gitignore
 .env
-docker-compose.yml

@@ -15,5 +15,5 @@
         "noImplicitAny": true,
         "skipLibCheck": true
     },
-    "exclude": ["docs"]
+    "exclude": ["docs", "coverage"]
 }

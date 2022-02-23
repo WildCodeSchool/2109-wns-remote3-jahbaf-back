@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  postgres_test:
+    image: postgres:12.1
+    ports:
+      - "5431:5432"
+    env_file:
+      - test.env
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: jahbaf_test
+    volumes:
+      - postgresql:/var/lib/postgresql_test/data
+      
+volumes:
+  postgresql:
