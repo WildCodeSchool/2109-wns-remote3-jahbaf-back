@@ -27,20 +27,6 @@ const assignUserToTask = async (
         },
     });
 };
-
-const assignUserToTask = async (
-    taskId: string,
-    userId: string
-): Promise<Task> => {
-    return await prisma.task.update({
-        where: {
-            id: taskId,
-        },
-        data: {
-            userId,
-        },
-    });
-};
 /**
  * Should be fetched by
  * projectId
