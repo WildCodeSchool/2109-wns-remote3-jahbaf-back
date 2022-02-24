@@ -95,4 +95,9 @@ export interface AssignTaskStatusArgs {
     taskStatusId: string;
 }
 
+export interface AssignUserArgs {
+    taskId: string;
+    userId: string;
+}
+
 export type User = App_User;
