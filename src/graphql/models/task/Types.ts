@@ -19,7 +19,7 @@ input TaskInput {
     priority: String
     description: String
     statusId: String
-    projectId: String
+    projectId: String!
     userId: String
 }`;
 
