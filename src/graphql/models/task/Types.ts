@@ -20,7 +20,7 @@ input TaskInput {
     description: String
     statusId: String
     sprintId: String
-    projectId: String
+    projectId: String!
     userId: String
 }`;
 
