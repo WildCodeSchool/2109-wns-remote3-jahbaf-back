@@ -7,10 +7,6 @@ const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
         data: {
             ...taskInput,
         },
-        /* select: {
-            id: true,
-            title: true,
-        } */
     });
 };
 

@@ -46,6 +46,14 @@ export interface Project_User {
     projectId: string;
 }
 
+export interface UpdateRoleArgs {
+    roleInput: UpdateRoleInput;
+    id: number;
+    roleId: number;
+    userId: string;
+    projectId: string;
+}
+
 export interface AddUserToProjectArgs {
     addUserToProjectInput: AddUserToProjectInput;
 }
@@ -108,3 +116,5 @@ export interface AssignUserToTaskArgs {
     taskId: string;
     userId: string;
 }
+
+export type User = App_User;
