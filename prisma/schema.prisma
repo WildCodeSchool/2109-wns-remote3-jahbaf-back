@@ -31,6 +31,7 @@ model Project {
   tasks         Task[]
   projectUsers  Project_User[]
   taskStatus    TaskStatus[]
+  roles         Role[]
 
   @@map("project")
 }
