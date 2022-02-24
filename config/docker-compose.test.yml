@@ -1,0 +1,35 @@
+version: '3'
+services:
+  postgres_test:
+    image: postgres:12.1
+    container_name: postgres_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 10s
+      retries: 10 
+    ports:
+      - "5432:5432"
+    env_file:
+      - test.env
+    volumes:
+      - ./data/postgres:/postgresql/data
+  back:
+    build:
+      context: ./
+      dockerfile: Dockerfile.test
+    container_name: back
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:4004/graphql?query=%7B__typename%7D || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 6
+    env_file:
+      - test.env
+    ports:
+      - "${BACKEND_PORT}:4000"
+    depends_on:
+      postgres_test:
+        condition: service_healthy
+    volumes:
+      - ./:/app
