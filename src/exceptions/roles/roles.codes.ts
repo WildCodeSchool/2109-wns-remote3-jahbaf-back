@@ -1,0 +1,5 @@
+export enum RolesErrorCodes {
+    ROLE_NOT_FOUND = 5001,
+    ROLE_COULD_NOT_BE_CREATED = 5002,
+    ROLE_COULD_NOT_BE_UPDATED = 5003
+}

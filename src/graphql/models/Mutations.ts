@@ -13,6 +13,10 @@ export const Mutation = `
     updateProject(projectInput: UpdateProjectInput!): Project!
     createTaskStatus(taskStatusInput: TaskStatusInput!): TaskStatus!
     assignTaskStatus(taskId: String!, taskStatusId: String!): Task!
+    createRole(roleInput: RoleInput!): Role!
+    updateRole(roleInput: UpdateRoleInput!): Role!
+    addUserToProject(addUserToProjectInput: AddUserToProjectInput!): Void
+    assignUserToTask(assignUserToTaskInput: AssignUserToTaskInput!): Task!
     deleteUser(email: String!, password: String!): Void!
   }
 `;

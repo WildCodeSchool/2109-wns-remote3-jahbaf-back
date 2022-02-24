@@ -2,24 +2,34 @@ import {
     MissingMandatoryFieldException,
     ProjectNotFoundException,
 } from 'src/exceptions';
-import { Project } from 'src/interfaces';
+import { Project, Project_User } from 'src/interfaces';
 import { consoleLogger } from 'src/logger';
 import {
+    addUserToProject,
     createOneProject,
     findManyProjects,
     findProjectById,
     updateOneProject,
 } from 'src/repositories';
-import { ProjectInput, UpdateProjectInput } from 'src/types';
+import { AddUserToProjectInput, ProjectInput, UpdateProjectInput } from 'src/types';
 
 export const createProjectService = async (
-    projectInput: ProjectInput
+    projectInput: ProjectInput & { userId: string }
 ): Promise<Project> => {
     const { name } = projectInput;
     if (!name) {
         throw new MissingMandatoryFieldException();
     }
     return await createOneProject(projectInput);
+};
+
+export const addUserToProjectService = async (
+    addUserToProjectInput: AddUserToProjectInput & { userId: string }
+): Promise<Project_User> => {
+    if (!(await findProjectByIdService(addUserToProjectInput.projectId))) {
+        throw new ProjectNotFoundException();
+    }
+    return await addUserToProject(addUserToProjectInput);
 };
 
 export const updateProjectService = async (

@@ -5,6 +5,9 @@ import {
     TaskStatusInput,
     SprintInput,
     UpdateProjectInput,
+    RoleInput,
+    UpdateRoleInput,
+    AddUserToProjectInput,
 } from './types';
 
 export interface ICreateUserArgs {
@@ -55,6 +58,31 @@ export interface Project {
     published: boolean;
 }
 
+export interface Project_User {
+    id: number,
+    roleId: number,
+    userId: string,
+    projectId: string
+}
+
+export interface AddUserToProjectArgs {
+    addUserToProjectInput: AddUserToProjectInput
+}
+
+export interface Role {
+    id: number,
+    name: string,
+    projectId: string
+}
+
+export interface UpdateRoleArgs {
+    roleInput: UpdateRoleInput
+}
+
+export interface CreateRoleArgs {
+    roleInput: RoleInput;
+}
+
 export interface UpdateProjectArgs {
     projectInput: UpdateProjectInput;
 }
@@ -93,6 +121,11 @@ export interface CreateTaskArgs {
 export interface AssignTaskStatusArgs {
     taskId: string;
     taskStatusId: string;
+}
+
+export interface AssignUserToTaskArgs {
+    taskId: string;
+    userId: string;
 }
 
 export type User = App_User;

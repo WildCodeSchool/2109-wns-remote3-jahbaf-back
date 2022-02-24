@@ -4,14 +4,17 @@ import {
     findOneTaskById,
     findAllTasksFromProject,
     updateOneTask,
+    assignUserToTask,
 } from 'src/repositories/TaskRepository';
 import { TaskInput, UpdateTaskInput } from 'src/types';
 import {
     MissingMandatoryFieldException,
+    TaskNotUpdatedException,
     UnknownTaskStatusException,
+    UserNotFoundException,
 } from 'src/exceptions';
 import { UnknownTaskException } from 'src/exceptions';
-import { findOneProjectTaskStatusById } from 'src/repositories';
+import { findOneProjectTaskStatusById, oneUserById } from 'src/repositories';
 
 export const createTaskService = async (
     taskInput: TaskInput
@@ -24,6 +27,23 @@ export const createTaskService = async (
 export const selectOneTaskService = async (id: string): Promise<Task | null> => await findOneTaskById(id);
 
 export const selectAllTasksFromProjectService = async (id: string): Promise<Task[] | null> => await findAllTasksFromProject(id);
+
+export const assignUserToTaskService = async (
+    taskId: string,
+    userId: string
+): Promise<Task> => {
+    if (!(await oneUserById({id: userId}))) {
+        throw new UserNotFoundException();
+    }
+    if (!(await findOneTaskById(taskId))) {
+        throw new UnknownTaskException();
+    }
+
+    const task = await assignUserToTask(taskId,  userId);
+    if (!task) throw new TaskNotUpdatedException();
+    
+    return task;
+}
 
 export const updateTaskService = async (
     updateInput: UpdateTaskInput
