@@ -70,3 +70,20 @@ export const assignTaskStatusService = async (
     };
     return await updateOneTask(updateInput);
 };
+
+export const assignUserService = async (
+    taskId: string,
+    userId: string
+): Promise<Task> => {
+    if (!(await findOneTaskById(taskId))) {
+        throw new UnknownTaskException();
+    }
+    if (!(await oneUserById({ id: userId }))) {
+        throw new UserNotFoundException();
+    }
+    const updateInput: UpdateTaskInput = {
+        id: taskId,
+        userId,
+    };
+    return await updateOneTask(updateInput);
+};

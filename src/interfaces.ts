@@ -11,28 +11,9 @@ import {
 } from './types';
 
 export interface ICreateUserArgs {
-    name?: string;
+    name: string;
     email: string;
     password: string;
-}
-
-export interface LoginArgs {
-    email: string;
-    password: string;
-}
-
-// An interface declaring no members is equivalent to its supertype.
-export type DeleteUserArgs = LoginArgs;
-
-export interface UpdateUserByIdArgs {
-    id: string;
-    data: {
-        password?: string;
-        lastPasswordReset?: Date;
-        last_activity?: Date;
-        is_active: boolean;
-        name?: string;
-    };
 }
 
 export interface Sprint {
@@ -59,24 +40,32 @@ export interface Project {
 }
 
 export interface Project_User {
-    id: number,
-    roleId: number,
-    userId: string,
-    projectId: string
-}
-
-export interface AddUserToProjectArgs {
-    addUserToProjectInput: AddUserToProjectInput
-}
-
-export interface Role {
-    id: number,
-    name: string,
-    projectId: string
+    id: number;
+    roleId: number;
+    userId: string;
+    projectId: string;
 }
 
 export interface UpdateRoleArgs {
-    roleInput: UpdateRoleInput
+    roleInput: UpdateRoleInput;
+    id: number;
+    roleId: number;
+    userId: string;
+    projectId: string;
+}
+
+export interface AddUserToProjectArgs {
+    addUserToProjectInput: AddUserToProjectInput;
+}
+
+export interface Role {
+    id: number;
+    name: string;
+    projectId: string;
+}
+
+export interface UpdateRoleArgs {
+    roleInput: UpdateRoleInput;
 }
 
 export interface CreateRoleArgs {
