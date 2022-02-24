@@ -7,4 +7,4 @@ RUN apk add --no-cache curl
 
 COPY . .
 
-CMD npm run start:prod
+CMD npm run start:docker
