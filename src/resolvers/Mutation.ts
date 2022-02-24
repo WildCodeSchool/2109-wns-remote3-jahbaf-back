@@ -6,4 +6,4 @@ export * from './projects/createProject.mutation';
 export * from './projects/updateProject.mutation';
 export * from './taskStatus/createTaskStatus.mutation';
 export * from './task/assignTaskStatus.mutation';
-export * from './task/assignUser.mutation';
+export * from './task/assignUserToTask.mutation';

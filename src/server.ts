@@ -22,8 +22,12 @@ async function startServer() {
      */
     const apolloServer = new ApolloServer({
         typeDefs,
-        resolvers: { Query, Mutation, Date: dateScalar },
-        context: createContext
+        resolvers: {
+            Query,
+            Mutation,
+            Date: dateScalar,
+        },
+        context: createContext,
     });
 
     await apolloServer.start();
@@ -33,8 +37,7 @@ async function startServer() {
         cors: {
             credentials: true,
             origin: [
-                process.env.FRONTEND_URL || 
-                'http://localhost:3000',
+                process.env.FRONTEND_URL || 'http://localhost:3000',
                 'https://studio.apollographql.com',
             ],
         },
