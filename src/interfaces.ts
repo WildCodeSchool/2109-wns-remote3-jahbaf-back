@@ -1,3 +1,4 @@
+import { App_User } from '@prisma/client';
 import {
     TaskInput,
     ProjectInput,
@@ -13,23 +14,23 @@ export interface ICreateUserArgs {
 }
 
 export interface LoginArgs {
-    email: string,
-    password: string,
+    email: string;
+    password: string;
 }
 
 // An interface declaring no members is equivalent to its supertype.
-export type DeleteUserArgs = LoginArgs
+export type DeleteUserArgs = LoginArgs;
 
 export interface UpdateUserByIdArgs {
-    id: string,
+    id: string;
     data: {
-      password?: string,
-      lastPasswordReset?: Date,
-      last_activity?: Date,
-      is_active: boolean,
-      name?: string
-    }
-  }
+        password?: string;
+        lastPasswordReset?: Date;
+        last_activity?: Date;
+        is_active: boolean;
+        name?: string;
+    };
+}
 
 export interface Sprint {
     id: string;
@@ -93,3 +94,5 @@ export interface AssignTaskStatusArgs {
     taskId: string;
     taskStatusId: string;
 }
+
+export type User = App_User;

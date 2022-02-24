@@ -3,14 +3,25 @@ import { createOneUser, deleteOneUserById } from '../../repositories';
 import { authenticateUser, createToken } from 'src/utils/auth.utils';
 import { formatEmail, hashPassword } from './helpers';
 import { accessLogger, errorLogger } from '../../logger';
-import { UserCouldNotBeAuthenticated, UserCouldNotBeCreated } from 'src/exceptions';
+import {
+    UserCouldNotBeAuthenticated,
+    UserCouldNotBeCreated,
+} from 'src/exceptions';
 
-export const signUpService = async ({ email, password, name }: ICreateUserArgs) => {
+export const signUpService = async ({
+    email,
+    password,
+    name,
+}: ICreateUserArgs) => {
     accessLogger.info('Trying to signup user', { email });
     const hashedPassword = await hashPassword(password);
     const formatedEmail = formatEmail(email);
-    const user = await createOneUser({ email: formatedEmail, password: hashedPassword, name });
-    if(!user) {
+    const user = await createOneUser({
+        email: formatedEmail,
+        password: hashedPassword,
+        name,
+    });
+    if (!user) {
         errorLogger.error('User could not be signed up', { email });
         throw new UserCouldNotBeCreated();
     }
@@ -19,14 +30,13 @@ export const signUpService = async ({ email, password, name }: ICreateUserArgs) 
     return token;
 };
 
-
 export async function loginService(email: string, password: string) {
     accessLogger.info('Trying to authenticate user', { email });
     const user = await authenticateUser({
         email: formatEmail(email),
         password,
     });
-    
+
     if (!user) {
         errorLogger.error('User could not be authenticated', { email });
         throw new UserCouldNotBeAuthenticated();
@@ -44,8 +54,10 @@ export async function deleteUserService({ email, password }: DeleteUserArgs) {
     });
     if (!id) {
         errorLogger.error('User could not be authenticated', { email });
-        throw new UserCouldNotBeAuthenticated('User could not be authenticated !');}
+        throw new UserCouldNotBeAuthenticated(
+            'User could not be authenticated !'
+        );
+    }
     await deleteOneUserById({ id });
     accessLogger.info('User deleted successfully', { email });
 }
-

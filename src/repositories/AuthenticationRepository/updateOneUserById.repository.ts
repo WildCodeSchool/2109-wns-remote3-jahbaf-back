@@ -1,8 +1,11 @@
 import { prisma } from 'src/client';
-import { UpdateUserByIdArgs } from 'src/interfaces';
+import { UpdateUserByIdArgs, User } from 'src/interfaces';
 
-export async function updateOneUserById({ id, data }: UpdateUserByIdArgs) {
-    return prisma.user.update({
+export async function updateOneUserById({
+    id,
+    data,
+}: UpdateUserByIdArgs): Promise<User> {
+    return prisma.app_User.update({
         where: {
             id,
         },
