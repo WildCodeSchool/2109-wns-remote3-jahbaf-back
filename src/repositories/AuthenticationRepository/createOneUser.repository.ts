@@ -1,8 +1,12 @@
 import { prisma } from 'src/client';
-import { ICreateUserArgs } from 'src/interfaces';
+import { ICreateUserArgs, User } from 'src/interfaces';
 
-export const createOneUser = async ({ email, password, name = '' }: ICreateUserArgs) => {
-    return await prisma.user.create({
+export const createOneUser = async ({
+    email,
+    password,
+    name = '',
+}: ICreateUserArgs): Promise<User> => {
+    return await prisma.app_User.create({
         data: {
             email,
             password,
