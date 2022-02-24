@@ -7,10 +7,11 @@
  */
 export const Query = `
   type Query {
-    self(id: String!): AuthPayload!
+    self: AuthPayload!
     findManyProjects: [Project!]!
     findProjectById(id: String!): Project!
     selectOneTask(id: String!): Task!
+    login(email: String!, password: String!): String!
     selectAllTasksFromProject(id: String!): [Task]!
     findRoleById(findRoleByIdInput: FindRoleByIdInput!): Role!
     findAllRolesFromProject(projectId: String!): [Role]!

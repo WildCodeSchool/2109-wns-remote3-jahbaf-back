@@ -6,7 +6,7 @@
  */
 export const Mutation = `
   type Mutation {
-    signUp(name: String, email: String!, password: String!): AuthPayload!
+    signUp(name: String, email: String!, password: String!): String!
     createSprint(sprintInput: SprintInput!): Sprint!
     createTask(taskInput: TaskInput): Task!
     createProject(projectInput: ProjectInput! ): Project!
@@ -17,5 +17,6 @@ export const Mutation = `
     updateRole(roleInput: UpdateRoleInput!): Role!
     addUserToProject(addUserToProjectInput: AddUserToProjectInput!): Void
     assignUserToTask(assignUserToTaskInput: AssignUserToTaskInput!): Task!
+    deleteUser(email: String!, password: String!): Void!
   }
 `;

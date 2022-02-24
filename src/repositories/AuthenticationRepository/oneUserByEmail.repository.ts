@@ -1,14 +1,14 @@
-import { PrismaClient, User } from '.prisma/client';
+import { User } from 'src/interfaces';
+import { prisma } from '../../client';
 
-
-export async function oneUserByEmail({ email }: Pick<User, 'email'>, prisma: PrismaClient) {
-    return prisma.user.findUnique({
+export async function oneUserByEmail({ email }: Pick<User, 'email'>) {
+    return prisma.app_User.findUnique({
         where: {
             email,
         },
         include: {
             tasks: true,
             project_users: true,
-        }
+        },
     });
 }

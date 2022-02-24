@@ -35,7 +35,7 @@ model Project {
   @@map("project")
 }
 
-model User {
+model App_User {
   id            String         @id @default(uuid())
   name          String
   email         String         @unique
@@ -46,13 +46,13 @@ model User {
   tasks         Task[]
   project_users Project_User[]
 
-  @@map("user")
+  @@map("app_user")
 }
 
 model Project_User {
   id        Int     @id @default(autoincrement())
   project   Project @relation(fields: [projectId], references: [id])
-  user      User    @relation(fields: [userId], references: [id])
+  user      App_User    @relation(fields: [userId], references: [id])
   roles     Role    @relation(fields: [roleId], references: [id])
   roleId    Int     @map("role_id")
   projectId String  @map("project_id")
@@ -94,7 +94,7 @@ model Task {
   sprintId    String?     @map("sprint_id")
   project     Project     @relation(fields: [projectId], references: [id])
   projectId   String      @map("project_id")
-  assignee    User?       @relation(fields: [userId], references: [id])
+  assignee    App_User?       @relation(fields: [userId], references: [id])
   userId      String?     @map("user_id")
   title       String
   points      Int?

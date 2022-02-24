@@ -1,3 +1,4 @@
+export * from './authentication/deleteUser.mutation';
 export * from './authentication/signup.mutation';
 export * from './sprints/createSprint.mutation';
 export * from './task/createTask.mutation';

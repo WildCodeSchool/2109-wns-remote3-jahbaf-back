@@ -1,13 +1,15 @@
 import { ICreateUserArgs } from 'src/interfaces';
+import { accessLogger, errorLogger } from 'src/logger';
 import { signUpService } from 'src/services';
+import { Context } from '../../utils/context.utils';
 
-/* eslint @typescript-eslint/no-explicit-any: 0 */
-export const signUp = async (parent: any, signUpArgs: ICreateUserArgs) => {
+export const signUp = async (parent: any, signUpArgs: ICreateUserArgs, context: Context) => {
     try {
-        const user = signUpService(signUpArgs);
-        return { user };
-    } catch (e) {
-        e;
+        accessLogger.info('signUp');
+        const token = await signUpService(signUpArgs, context);
+        return token;
+    } catch (e: any) {
+        errorLogger.error(e.message, { code: e.code });
         throw e;
     }
 };

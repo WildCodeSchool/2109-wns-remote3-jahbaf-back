@@ -15,28 +15,32 @@ services:
     volumes:
       - ./data/postgres:/postgresql/data
   front:
-    image: jahbaf-client
+    build:
+      context: ../2109-wns-remote3-jahbaf-client
+      dockerfile: Dockerfile.dev
     container_name: front
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "3000:3000"
     depends_on:
       - back
     volumes:
-      - ../2109-wns-remote3-jahbaf-client:/app/front
+      - ../2109-wns-remote3-jahbaf-client:/app
   back:
-    image: jahbaf-back
+    build: ./
     container_name: back
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:4004/graphql?query=%7B__typename%7D || exit 1"]
       interval: 10s
       timeout: 10s
-      retries: 6 
+      retries: 6
     env_file:
       - .env
     ports:
-      - "4004:4000"
+      - "${BACKEND_PORT}:4000"
     depends_on:
       postgres:
         condition: service_healthy
     volumes:
-      - ./:/app/back
+      - ./:/app
