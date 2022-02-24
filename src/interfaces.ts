@@ -1,4 +1,14 @@
-import { SprintInput, ProjectInput } from './types';
+import { App_User } from '@prisma/client';
+import {
+    TaskInput,
+    ProjectInput,
+    TaskStatusInput,
+    SprintInput,
+    UpdateProjectInput,
+    RoleInput,
+    UpdateRoleInput,
+    AddUserToProjectInput,
+} from './types';
 
 export interface ICreateUserArgs {
     name: string;
@@ -25,6 +35,76 @@ export interface CreateProjectArgs {
 export interface Project {
     id: string;
     name: string;
-    description: string;
-    published?: boolean;
+    description: string | null;
+    published: boolean;
+}
+
+export interface Project_User {
+    id: number;
+    roleId: number;
+    userId: string;
+    projectId: string;
+}
+
+export interface AddUserToProjectArgs {
+    addUserToProjectInput: AddUserToProjectInput;
+}
+
+export interface Role {
+    id: number;
+    name: string;
+    projectId: string;
+}
+
+export interface UpdateRoleArgs {
+    roleInput: UpdateRoleInput;
+}
+
+export interface CreateRoleArgs {
+    roleInput: RoleInput;
+}
+
+export interface UpdateProjectArgs {
+    projectInput: UpdateProjectInput;
+}
+
+export interface ProjectCreatePayLoad {
+    project: Project;
+}
+
+export interface TaskStatus {
+    id: string;
+    name: string;
+    projectId: string;
+}
+
+export interface CreateTaskStatusArgs {
+    taskStatusInput: TaskStatusInput;
+}
+export interface Task {
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    statusId: string | null;
+    sprintId: string | null;
+    projectId: string;
+    userId: string | null;
+    title: string;
+    points: number | null;
+    priority: string | null;
+    description: string | null;
+}
+
+export interface CreateTaskArgs {
+    taskInput: TaskInput;
+}
+
+export interface AssignTaskStatusArgs {
+    taskId: string;
+    taskStatusId: string;
+}
+
+export interface AssignUserToTaskArgs {
+    taskId: string;
+    userId: string;
 }
