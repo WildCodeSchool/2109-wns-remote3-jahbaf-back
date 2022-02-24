@@ -1,7 +1,6 @@
 import { prisma } from 'src/client';
 import { Task } from '.prisma/client';
 import { TaskInput, UpdateTaskInput } from 'src/types';
-import { consoleLogger } from 'src/logger';
 
 const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
     return await prisma.task.create({
@@ -12,6 +11,20 @@ const createOneTask = async (taskInput: TaskInput): Promise<Task> => {
             id: true,
             title: true,
         } */
+    });
+};
+
+const assignUserToTask = async (
+    taskId: string,
+    userId: string
+): Promise<Task> => {
+    return await prisma.task.update({
+        where: {
+            id: taskId,
+        },
+        data: {
+            userId,
+        },
     });
 };
 /**
@@ -27,21 +40,50 @@ const findOneTaskByKey = async (
      */
     title: string
 ): Promise<Task | null> => {
-    consoleLogger.info('In repo, finding');
     return await prisma.task.findFirst({
         where: {
-            /* 
-            projectId: projectId,
-            sprintId: sprint,
-             */
             title: title,
+        },
+        include: {
+            assignee: {
+                select: {
+                    email: true,
+                    id: true,
+                },
+            },
         },
     });
 };
 
-const findOneTaskById = async (id: string): Promise<Task | null> => await prisma.task.findUnique({ where: { id } });
+const findOneTaskById = async (id: string): Promise<Task | null> =>
+    await prisma.task.findUnique({
+        where: {
+            id,
+        },
+        include: {
+            assignee: {
+                select: {
+                    email: true,
+                    id: true,
+                },
+            },
+        },
+    });
 
-const findAllTasksFromProject = async (id: string): Promise<Task[] | null> => await prisma.task.findMany({ where: { projectId: id } });
+const findAllTasksFromProject = async (id: string): Promise<Task[] | null> =>
+    await prisma.task.findMany({
+        where: {
+            projectId: id,
+        },
+        include: {
+            assignee: {
+                select: {
+                    email: true,
+                    id: true,
+                },
+            },
+        },
+    });
 
 const updateOneTask = async (
     taskUpdateInput: UpdateTaskInput
@@ -56,4 +98,11 @@ const updateOneTask = async (
     });
 };
 
-export { createOneTask, findOneTaskByKey, findOneTaskById, updateOneTask, findAllTasksFromProject };
+export {
+    createOneTask,
+    findOneTaskByKey,
+    findOneTaskById,
+    updateOneTask,
+    findAllTasksFromProject,
+    assignUserToTask,
+};

@@ -1,17 +1,38 @@
 import { prisma } from 'src/client';
-import { Project } from '.prisma/client';
-import { ProjectInput, UpdateProjectInput } from 'src/types';
+import { Project, Project_User } from '.prisma/client';
+import { ProjectInput, UpdateProjectInput, AddUserToProjectInput } from 'src/types';
 
 export const createOneProject = async (
-    projectInput: ProjectInput
+    projectInput: ProjectInput & { userId: string }
 ): Promise<Project> => {
-    const { name, description, published } = projectInput;
-    return await prisma.project.create({
+    const { name, description, published, userId, roleId } = projectInput;
+    const project = await prisma.project.create({
         data: {
             name,
             description: description || '',
             published,
         },
+    });
+    await prisma.project_User.create({
+        data: {
+            projectId: project.id,
+            roleId,
+            userId
+        }
+    });
+    return project;
+};
+
+export const addUserToProject = async (
+    addUserToProjectInput: AddUserToProjectInput & { userId: string }
+): Promise<Project_User> => {
+    const { roleId, userId, projectId } = addUserToProjectInput;
+    return await prisma.project_User.create({
+        data: {
+            projectId,
+            userId,
+            roleId
+        }
     });
 };
 
@@ -50,16 +71,17 @@ export const findProjectById = async (id: string) => {
         where: {
             id,
         },
-        select: {
-            id: true,
-            name: true,
-            description: true,
-            published: true,
-            sprint: true,
-            tasks: true,
-            projectUsers: true,
-            taskStatus: true,
-            createdAt: true,
+        include: {
+            projectUsers: {
+                include: {
+                    user: {
+                        select: {
+                            email: true,
+                            id: true,
+                        }
+                    }
+                }
+            }
         },
     });
 };

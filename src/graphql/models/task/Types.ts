@@ -2,13 +2,13 @@ const Task = `
 type Task {
     id: ID!
     statusId: String
-    sprintId: String
     projectId: String
     userId: String
     title: String!
     points: Int
     priority: String
     description: String
+    user: User
 }
 `;
 
@@ -19,9 +19,15 @@ input TaskInput {
     priority: String
     description: String
     statusId: String
-    sprintId: String
-    projectId: String
+    projectId: String!
     userId: String
 }`;
 
-export const TaskTypes: string[] = [Task, TaskInput];
+const AssignUserToTaskInput = `
+    input AssignUserToTaskInput {
+        userId: ID!
+        taskId: ID!
+    }
+`;
+
+export const TaskTypes: string[] = [Task, TaskInput, AssignUserToTaskInput];

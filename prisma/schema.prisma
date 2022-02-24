@@ -13,6 +13,8 @@ datasource db {
 model Role {
   id            Int            @id @default(autoincrement())
   name          String
+  projectId     String  @map("project_id")
+  project       Project @relation(fields: [projectId], references: [id])
   project_users Project_User[]
 
   @@map("role")
@@ -29,6 +31,7 @@ model Project {
   tasks         Task[]
   projectUsers  Project_User[]
   taskStatus    TaskStatus[]
+  roles         Role[]
 
   @@map("project")
 }
