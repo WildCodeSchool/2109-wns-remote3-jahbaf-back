@@ -24,26 +24,29 @@ export const createTaskService = async (
     return await createOneTask(taskInput);
 };
 
-export const selectOneTaskService = async (id: string): Promise<Task | null> => await findOneTaskById(id);
+export const selectOneTaskService = async (id: string): Promise<Task | null> =>
+    await findOneTaskById(id);
 
-export const selectAllTasksFromProjectService = async (id: string): Promise<Task[] | null> => await findAllTasksFromProject(id);
+export const selectAllTasksFromProjectService = async (
+    id: string
+): Promise<Task[] | null> => await findAllTasksFromProject(id);
 
 export const assignUserToTaskService = async (
     taskId: string,
     userId: string
 ): Promise<Task> => {
-    if (!(await oneUserById({id: userId}))) {
+    if (!(await oneUserById({ id: userId }))) {
         throw new UserNotFoundException();
     }
     if (!(await findOneTaskById(taskId))) {
         throw new UnknownTaskException();
     }
 
-    const task = await assignUserToTask(taskId,  userId);
+    const task = await assignUserToTask(taskId, userId);
     if (!task) throw new TaskNotUpdatedException();
-    
+
     return task;
-}
+};
 
 export const updateTaskService = async (
     updateInput: UpdateTaskInput
@@ -64,6 +67,23 @@ export const assignTaskStatusService = async (
     const updateInput: UpdateTaskInput = {
         id: taskId,
         statusId: taskStatusId,
+    };
+    return await updateOneTask(updateInput);
+};
+
+export const assignUserService = async (
+    taskId: string,
+    userId: string
+): Promise<Task> => {
+    if (!(await findOneTaskById(taskId))) {
+        throw new UnknownTaskException();
+    }
+    if (!(await oneUserById({ id: userId }))) {
+        throw new UserNotFoundException();
+    }
+    const updateInput: UpdateTaskInput = {
+        id: taskId,
+        userId,
     };
     return await updateOneTask(updateInput);
 };

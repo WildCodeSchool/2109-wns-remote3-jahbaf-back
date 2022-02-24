@@ -1,9 +1,9 @@
-import { AssignUserToTaskArgs, Task } from 'src/interfaces';
-import { assignUserToTaskService } from 'src/services';
+import { Task, AssignUserToTaskArgs } from '../../interfaces';
+import { assignUserService } from '../../services/index';
 
 export const assignUserToTask = (
     parent: any,
     { taskId, userId }: AssignUserToTaskArgs
 ): Promise<Task> => {
-    return assignUserToTaskService(taskId, userId);
+    return assignUserService(taskId, userId);
 };
