@@ -16,8 +16,8 @@ export const Types = [
     ...TaskTypes,
     ...SprintTypes,
     ...CustomTypes,
-    ...RolesTypes
-    ...UtilsTypes
+    ...RolesTypes,
+    ...UtilsTypes,
 ];
 
 export const typeDefs = [Mutation, Query, ...Types];
