@@ -1,16 +1,34 @@
-import { Sprint, Project, TaskStatus, Task, Role, Project_User } from './interfaces';
+import { Sprint, Project, TaskStatus, Task, Role } from './interfaces';
 
 export type SprintInput = Omit<Sprint, 'id'>;
 
-export type ProjectInput = Omit<Project, 'id'> & { roleId: number };
+export type ProjectInput = {
+    projectName: string,
+    projectDescription?: string,
+    published?: boolean,
+    roleName: string
+};
+
 export type UpdateProjectInput = Pick<Project, 'id'> & Partial<ProjectInput>;
 
 export type TaskStatusInput = Omit<TaskStatus, 'id'>;
 
-export type TaskInput = Omit<Task, 'id'>;
+export type TaskInput = {
+    title: string,
+    description: string,
+    projectId: string
+};
+
 export type UpdateTaskInput = Partial<Task>;
 
 export type RoleInput = Omit<Role, 'id'>;
-export type UpdateRoleInput = Pick<Role, 'id'> & Partial<RoleInput>;
+export type UpdateRoleInput = {
+    id: number,
+    name: string
+};
 
-export type AddUserToProjectInput = Omit<Project_User, 'id' & 'userId'>;
+export type AddUserToProjectInput = {
+    userId: string,
+    roleId: number,
+    projectId: string
+};

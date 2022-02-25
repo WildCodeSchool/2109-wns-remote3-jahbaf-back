@@ -4,9 +4,9 @@ import { createRole, findAllRolesFromProject, findRoleById, updateRole } from 's
 import { RoleInput, UpdateRoleInput } from 'src/types';
 
 export const findRoleByIdService = async (
-    findRoleByIdInput: Omit<Role, 'name'>
+    id: number
 ): Promise<Role> => {
-    const role = await findRoleById(findRoleByIdInput);
+    const role = await findRoleById(id);
     if (!role) {
         throw new RoleNotFoundException();
     }
@@ -34,8 +34,8 @@ export const createRoleService = async (
 export const updateRoleService = async (
     roleInput: UpdateRoleInput
 ): Promise<Role> => {
-    const { id, projectId } = roleInput;
-    if (await findRoleById({id, projectId})) {
+    const { id } = roleInput;
+    if (!await findRoleById(id)) {
         throw new RoleNotFoundException();
     }
     const role = await updateRole(roleInput);
