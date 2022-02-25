@@ -45,15 +45,6 @@ export interface Project_User {
     userId: string;
     projectId: string;
 }
-
-export interface UpdateRoleArgs {
-    roleInput: UpdateRoleInput;
-    id: number;
-    roleId: number;
-    userId: string;
-    projectId: string;
-}
-
 export interface AddUserToProjectArgs {
     addUserToProjectInput: AddUserToProjectInput;
 }
@@ -62,6 +53,10 @@ export interface LoginArgs {
     name: string;
     email: string;
     password: string;
+}
+
+export interface UpdateRoleArgs {
+    roleInput: UpdateRoleInput;
 }
 
 // An interface declaring no members is equivalent to its supertype.
