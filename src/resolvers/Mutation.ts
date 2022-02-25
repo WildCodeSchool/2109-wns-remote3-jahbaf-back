@@ -10,3 +10,5 @@ export * from './roles/createRole.mutation';
 export * from './roles/updateRole.mutation';
 export * from './task/assignUserToTask.mutation';
 export * from './authentication/confirmAccount.mutation';
+export * from './comment/createComment.mutation';
+export * from './comment/updateComment.mutation';
