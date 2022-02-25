@@ -16,6 +16,20 @@ export interface ICreateUserArgs {
     password: string;
 }
 
+export interface Role {
+    id: number;
+    name: string;
+    projectId: string;
+}
+
+export interface UpdateRoleArgs {
+    roleInput: UpdateRoleInput;
+}
+
+export interface CreateRoleArgs {
+    roleInput: RoleInput;
+}
+
 export interface Sprint {
     id: string;
     startDate: Date;

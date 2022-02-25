@@ -13,7 +13,7 @@ export const Query = `
     selectOneTask(id: String!): Task!
     login(email: String!, password: String!): String!
     selectAllTasksFromProject(id: String!): [Task]!
-    findRoleById(findRoleByIdInput: FindRoleByIdInput!): Role!
+    findRoleById(findRoleByIdInput: FindRoleByIdInput!): Role
     findAllRolesFromProject(projectId: String!): [Role]!
   }
 `;
