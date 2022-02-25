@@ -46,6 +46,15 @@ export interface Project_User {
     projectId: string;
 }
 
+export interface AddUserToProjectArgs {
+    addUserToProjectInput: AddUserToProjectInput;
+}
+export interface LoginArgs {
+    name: string;
+    email: string;
+    password: string;
+}
+
 export interface UpdateRoleArgs {
     roleInput: UpdateRoleInput;
     id: number;
@@ -54,18 +63,13 @@ export interface UpdateRoleArgs {
     projectId: string;
 }
 
-export interface AddUserToProjectArgs {
-    addUserToProjectInput: AddUserToProjectInput;
-}
+// An interface declaring no members is equivalent to its supertype.
+export type DeleteUserArgs = LoginArgs;
 
 export interface Role {
     id: number;
     name: string;
     projectId: string;
-}
-
-export interface UpdateRoleArgs {
-    roleInput: UpdateRoleInput;
 }
 
 export interface CreateRoleArgs {
@@ -80,10 +84,23 @@ export interface ProjectCreatePayLoad {
     project: Project;
 }
 
+export interface UpdateUserByIdArgs {
+    id: string;
+    data: {
+        password?: string;
+        lastPasswordReset?: Date;
+        last_activity?: Date;
+        is_active: boolean;
+        name?: string;
+    };
+}
+
 export interface TaskStatus {
     id: string;
     name: string;
     projectId: string;
+    description: string;
+    published?: boolean;
 }
 
 export interface CreateTaskStatusArgs {
