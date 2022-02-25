@@ -64,10 +64,6 @@ export interface Role {
     projectId: string;
 }
 
-export interface UpdateRoleArgs {
-    roleInput: UpdateRoleInput;
-}
-
 export interface CreateRoleArgs {
     roleInput: RoleInput;
 }
