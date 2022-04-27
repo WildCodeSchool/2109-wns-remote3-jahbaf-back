@@ -18,7 +18,6 @@ export const User = `
    email: String
    password: String
    activated: Boolean
-   confirmed: Boolean
  }`;
 
 export const AuthTypes: string[] = [User, AuthPayload];

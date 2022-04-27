@@ -41,7 +41,7 @@ export interface Token {
     userId: string;
 }
 
-export function isTokenExpired(expiresIn: number, emittedAt: number) {
+function isTokenExpired(expiresIn: number, emittedAt: number) {
     return Date.now() > expiresIn * 1000 + emittedAt;
 }
 
