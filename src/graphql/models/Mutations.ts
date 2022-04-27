@@ -19,5 +19,6 @@ export const Mutation = `
     assignUserToTask(assignUserToTaskInput: AssignUserToTaskInput!): Task!
     deleteUser(email: String!, password: String!): Void!
     confirmAccount(token: String!): String!
+    resetPassword(token: String!, password: String!): String!
   }
 `;

@@ -15,5 +15,6 @@ export const Query = `
     selectAllTasksFromProject(id: String!): [Task]!
     findRoleById(findRoleByIdInput: FindRoleByIdInput!): Role!
     findAllRolesFromProject(projectId: String!): [Role]!
+    resetPasswordMail(email: String!): String!
   }
 `;
