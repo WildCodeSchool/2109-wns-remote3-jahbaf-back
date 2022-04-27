@@ -46,6 +46,7 @@ model App_User {
   createdAt     DateTime       @default(now()) @map("updated_at")
   tasks         Task[]
   project_users Project_User[]
+  confirmed     Boolean?       @default(false)
 
   @@map("app_user")
 }
