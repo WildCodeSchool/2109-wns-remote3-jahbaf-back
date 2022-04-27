@@ -167,6 +167,19 @@
                     }
                 ]
             }
+        },
+        "confirmAccount": {
+                "type": "Mutation",
+                "description": "Activate an account by turning confirmed field to true",
+                "usage": "confirmAccount(token: String!)",
+                "returns": "token: String!",
+                "exceptions": [
+                    {
+                        "name": "ExpiredToken",
+                        "description": "Ce token a expiré",
+                        "code": 1006
+                    }
+                ]
         }
     }
 }
