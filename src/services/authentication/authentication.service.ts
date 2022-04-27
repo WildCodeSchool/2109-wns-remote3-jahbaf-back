@@ -8,7 +8,7 @@ import {
     UserCouldNotBeAuthenticated,
     UserCouldNotBeCreated,
 } from 'src/exceptions';
-import { createMailingURL, sendConfirmationEmail } from '../mailing/signupConfirmation';
+import { createMailingURL, sendConfirmationEmail, sendResetPasswordEmail } from '../mailing/';
 import { Routes } from 'src/utils/constants/Routes.enum';
 
 export const signUpService = async ({
@@ -86,3 +86,30 @@ export async function confirmAccountService(token: string) {
     accessLogger.info('Trying to confirm account', { token });
     return token;
 }
+
+export const resetPasswordMailService = async (email: string) => {
+    accessLogger.info("Checking user for email", { email });
+    const user = await oneUserByEmail({ email });
+    if (!user) throw new UserCouldNotBeAuthenticated('User could not be found');
+    const token = createToken(user);
+    try {
+        await sendResetPasswordEmail(email, createMailingURL(token, Routes.RESET_PASSWORD));
+    } catch(e) {
+        console.log(e);
+        throw new Error("Could not send email");
+    }
+};
+
+export const resetPassword = async (token: string, password: string): Promise<string> => {
+    accessLogger.info('Trying to reset password', { token });
+    const { userId, expiresIn, emittedAt } = getTokenPayload(token);
+    const isExpired = isTokenExpired(expiresIn, emittedAt);
+    if (isExpired) throw new ExpiredToken('Token expired');
+    const user = await oneUserById({ id: userId });
+    if (!user) throw new UserCouldNotBeAuthenticated('User could not be found');
+    const hashedPassword = await hashPassword(password);
+    const updatedUser = await updateOneUserById({ id: userId, data: { password: hashedPassword } });
+    if(!updatedUser) throw new UserCouldNotBeAuthenticated('User could not be updated');
+    accessLogger.info('Password reset successfully', { token });
+    return token;
+};
