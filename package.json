@@ -26,6 +26,7 @@
   "homepage": "https://github.com/WildCodeSchool/2109-wns-remote3-jahbaf-back#readme",
   "dependencies": {
     "@prisma/client": "3.3.0",
+    "@sendgrid/mail": "^7.6.2",
     "apollo-server": "^3.4.0",
     "apollo-server-express": "^3.4.0",
     "bcryptjs": "^2.4.3",

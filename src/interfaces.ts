@@ -50,7 +50,7 @@ export interface AddUserToProjectArgs {
     addUserToProjectInput: AddUserToProjectInput;
 }
 export interface LoginArgs {
-    name: string;
+    name?: string;
     email: string;
     password: string;
 }
@@ -90,8 +90,9 @@ export interface UpdateUserByIdArgs {
         password?: string;
         lastPasswordReset?: Date;
         last_activity?: Date;
-        is_active: boolean;
+        is_active?: boolean;
         name?: string;
+        confirmed?: boolean
     };
 }
 
