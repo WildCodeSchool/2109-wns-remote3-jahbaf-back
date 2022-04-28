@@ -4,7 +4,7 @@ export async function sendConfirmationEmail(email: string, confirmationUrl: stri
     sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
     const message = {
         to: email,
-        from: 'abdelli.amine.aa@gmail.com',
+        from: process.env.SENDGRID_FROM_EMAIL || '',
         subject: 'Confirmation de votre compte',
         html: (`
     <p>Bonjour,</p>
