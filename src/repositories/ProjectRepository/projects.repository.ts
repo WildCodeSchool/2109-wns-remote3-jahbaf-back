@@ -5,18 +5,33 @@ import { ProjectInput, UpdateProjectInput, AddUserToProjectInput } from 'src/typ
 export const createOneProject = async (
     projectInput: ProjectInput & { userId: string }
 ): Promise<Project> => {
-    const { name, description, published, userId, roleId } = projectInput;
+    const {
+        projectName,
+        projectDescription,
+        published,
+        userId,
+        roleName
+    } = projectInput;
+
     const project = await prisma.project.create({
         data: {
-            name,
-            description: description || '',
+            name: projectName,
+            description: projectDescription || '',
             published,
         },
     });
+
+    const role = await prisma.role.create({
+        data: {
+            name: roleName,
+            projectId: project.id
+        }
+    });
+
     await prisma.project_User.create({
         data: {
             projectId: project.id,
-            roleId,
+            roleId: role.id,
             userId
         }
     });

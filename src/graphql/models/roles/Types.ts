@@ -1,7 +1,7 @@
 const Role = `
     type Role {
-        id: ID!
-        name: String
+        id: Int!
+        name: String!
         projectId: String!
     }
 `;
@@ -15,16 +15,14 @@ const RoleInput = `
 
 const FindRoleByIdInput = `
     input FindRoleByIdInput {
-        id: ID!
-        projectId: String!
+        id: Int!
     }
 `;
 
 const UpdateRoleInput = `
     input UpdateRoleInput {
-        id: ID!
-        name: String
-        projectId: String!
+        id: Int!
+        name: String!
     }
 `;
 

@@ -27,10 +27,10 @@ const ProjectUser = `
  */
 const ProjectInput = `
     input ProjectInput {
-        name: String!
-        description: String
+        projectName: String!
+        projectDescription: String
         published: Boolean
-        roleId: Int!
+        roleName: String!
     }
 `;
 
