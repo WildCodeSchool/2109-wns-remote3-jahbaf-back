@@ -180,6 +180,43 @@
                         "code": 1006
                     }
                 ]
+        },
+        "resetPassword": {
+            "type": "Mutation",
+            "description": "Reset user password with new password",
+            "usage": "resetPassword(token: String!, password: String!)",
+            "returns": "token: String!",
+            "exceptions": [
+                {
+                    "name": "ExpiredToken",
+                    "description": "Ce token a expiré",
+                    "code": 1006
+                },
+                {
+                    "name": "UserNotFoundException",
+                    "description": "Cet utilisateur n'existe pas",
+                    "code": 1001
+                }
+            ]
+        },
+        "resetPasswordMail": {
+            "type": "Query",
+            "description": "Send a mail to reset user password",
+            "usage": "resetPasswordMail(email: String!)",
+            "returns": "token: String!",
+            "exceptions": [
+                {
+                    "name": "UserNotFoundException",
+                    "description": "Cet utilisateur n'existe pas",
+                    "code": 1001
+                },
+                {
+                    "name": "ExpiredToken",
+                    "description": "Ce token a expiré",
+                    "code": 1006
+                }
+            ]
+
         }
     }
 }

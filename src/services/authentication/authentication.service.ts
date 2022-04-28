@@ -87,7 +87,7 @@ export async function confirmAccountService(token: string) {
     return token;
 }
 
-export const resetPasswordMailService = async (email: string) => {
+export const resetPasswordMailService = async (email: string): Promise<void> => {
     accessLogger.info("Checking user for email", { email });
     const user = await oneUserByEmail({ email });
     if (!user) throw new UserCouldNotBeAuthenticated('User could not be found');
@@ -100,7 +100,7 @@ export const resetPasswordMailService = async (email: string) => {
     }
 };
 
-export const resetPassword = async (token: string, password: string): Promise<string> => {
+export const resetPasswordService = async (token: string, password: string): Promise<string> => {
     accessLogger.info('Trying to reset password', { token });
     const { userId, expiresIn, emittedAt } = getTokenPayload(token);
     const isExpired = isTokenExpired(expiresIn, emittedAt);

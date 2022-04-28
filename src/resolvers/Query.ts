@@ -6,3 +6,4 @@ export * from './authentication/login.query';
 export * from './task/selectAllTasksFromProject.query';
 export * from './roles/findRoleById.query';
 export * from './roles/findAllRolesFromProject.query';
+export * from './authentication/resetPasswordMail.query';
