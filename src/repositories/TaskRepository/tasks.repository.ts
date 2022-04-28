@@ -45,8 +45,24 @@ const findOneTaskByKey = async (
                 select: {
                     email: true,
                     id: true,
-                },
+                }
             },
+            comments: {
+                select: {
+                    message: true,
+                    createdAt: true,
+                    updatedAt: true
+                },
+                include: {
+                    author: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true
+                        }
+                    }
+                }
+            }
         },
     });
 };
@@ -63,6 +79,22 @@ const findOneTaskById = async (id: string): Promise<Task | null> =>
                     id: true,
                 },
             },
+            comments: {
+                select: {
+                    message: true,
+                    createdAt: true,
+                    updatedAt: true
+                },
+                include: {
+                    author: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true
+                        }
+                    }
+                }
+            }
         },
     });
 
@@ -78,6 +110,22 @@ const findAllTasksFromProject = async (id: string): Promise<Task[] | null> =>
                     id: true,
                 },
             },
+            comments: {
+                select: {
+                    message: true,
+                    createdAt: true,
+                    updatedAt: true
+                },
+                include: {
+                    author: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true
+                        }
+                    }
+                }
+            }
         },
     });
 

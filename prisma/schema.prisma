@@ -20,6 +20,19 @@ model Role {
   @@map("role")
 }
 
+model Comment {
+  id            String         @id @default(uuid())
+  message       String
+  author        App_User       @relation(fields: [authorId], references: [id])
+  authorId      String         @map("author_id")
+  task          Task           @relation(fields: [taskId], references: [id])
+  taskId        String         @map("task_id")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime
+
+  @@map("comment")
+}
+
 model Project {
   id            String         @id @default(uuid())
   name          String
@@ -45,6 +58,7 @@ model App_User {
   updatedAt     DateTime       @default(now()) @map("created_at")
   createdAt     DateTime       @default(now()) @map("updated_at")
   tasks         Task[]
+  comments      Comment[]
   project_users Project_User[]
   confirmed     Boolean?       @default(false)
 
@@ -96,8 +110,9 @@ model Task {
   sprintId    String?     @map("sprint_id")
   project     Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId   String      @map("project_id")
-  assignee    App_User?       @relation(fields: [userId], references: [id])
+  assignee    App_User?   @relation(fields: [userId], references: [id])
   userId      String?     @map("user_id")
+  comments    Comment[]
   title       String
   points      Int?
   priority    String?
