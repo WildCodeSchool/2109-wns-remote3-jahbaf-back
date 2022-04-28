@@ -16,8 +16,8 @@ import { AddUserToProjectInput, ProjectInput, UpdateProjectInput } from 'src/typ
 export const createProjectService = async (
     projectInput: ProjectInput & { userId: string }
 ): Promise<Project> => {
-    const { name } = projectInput;
-    if (!name) {
+    const { projectName } = projectInput;
+    if (!projectName) {
         throw new MissingMandatoryFieldException();
     }
     return await createOneProject(projectInput);

@@ -2,11 +2,10 @@ import { prisma } from 'src/client';
 import { Role } from '@prisma/client';
 import { RoleInput, UpdateRoleInput } from 'src/types';
 
-export const findRoleById = async ({id, projectId}: Omit<Role, 'name'>): Promise<Role | null> => {
+export const findRoleById = async (id: number): Promise<Role | null> => {
     return await prisma.role.findUnique({
         where: {
-            id,
-            projectId
+            id
         }
     });
 };
@@ -16,7 +15,7 @@ export const findAllRolesFromProject = async (projectId: string): Promise<Role[]
         where: {
             projectId
         }
-    })
+    });
 };
 
 export const createRole = async (
@@ -34,11 +33,10 @@ export const createRole = async (
 export const updateRole = async (
     roleInput: UpdateRoleInput
 ): Promise<Role> => {
-    const { name, projectId, id } = roleInput;
+    const { name, id } = roleInput;
     return await prisma.role.update({
         where: {
-            id,
-            projectId
+            id
         },
         data: {
             name
