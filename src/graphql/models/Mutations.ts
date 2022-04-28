@@ -18,5 +18,6 @@ export const Mutation = `
     addUserToProject(addUserToProjectInput: AddUserToProjectInput!): Void
     assignUserToTask(assignUserToTaskInput: AssignUserToTaskInput!): Task!
     deleteUser(email: String!, password: String!): Void!
+    confirmAccount(token: String!): String!
   }
 `;

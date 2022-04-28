@@ -9,3 +9,4 @@ export * from './task/assignTaskStatus.mutation';
 export * from './roles/createRole.mutation';
 export * from './roles/updateRole.mutation';
 export * from './task/assignUserToTask.mutation';
+export * from './authentication/confirmAccount.mutation';
