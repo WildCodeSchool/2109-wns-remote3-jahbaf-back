@@ -203,7 +203,7 @@
             "type": "Query",
             "description": "Send a mail to reset user password",
             "usage": "resetPasswordMail(email: String!)",
-            "returns": "token: String!",
+            "returns": "Void!",
             "exceptions": [
                 {
                     "name": "UserNotFoundException",
