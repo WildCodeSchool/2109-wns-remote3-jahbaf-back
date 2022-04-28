@@ -4,7 +4,7 @@ export const sendResetPasswordEmail = async (email: string, confirmationUrl: str
     sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
     const message = {
         to: email,
-        from: 'abdelli.amine.aa@gmail.com',
+        from: process.env.SENDGRID_FROM_EMAIL || '',
         subject: 'Réinitialisation de votre mot de passe',
         html: (`
     <p>Bonjour,</p>
@@ -16,6 +16,6 @@ export const sendResetPasswordEmail = async (email: string, confirmationUrl: str
     L'équipe Jahbaf</p><br><br>
     `),
     };
-
+    
     await sgMail.send(message);
 };
