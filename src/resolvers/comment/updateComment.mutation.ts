@@ -4,7 +4,7 @@ import { accessLogger, errorLogger } from 'src/logger';
 import { updateCommentService } from 'src/services/comment/comment.service';
 import { Context } from 'src/utils/context.utils';
 
-export const updateCommentMutation = async (
+export const updateComment = async (
     _: any,
     { commentInput }: UpdateCommentArgs,
     context: Context
