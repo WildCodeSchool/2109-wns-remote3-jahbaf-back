@@ -8,6 +8,7 @@ import { SprintTypes } from './sprint/Types';
 import { TaskStatusTypes } from './taskStatus/Types';
 import { Mutation } from './Mutations';
 import { UtilsTypes } from './utils/Types';
+import { CommentTypes } from './comment/Types';
 
 export const Types = [
     ...AuthTypes,
@@ -15,6 +16,7 @@ export const Types = [
     ...TaskStatusTypes,
     ...TaskTypes,
     ...SprintTypes,
+    ...CommentTypes,
     ...CustomTypes,
     ...RolesTypes,
     ...UtilsTypes,

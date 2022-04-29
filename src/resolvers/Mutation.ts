@@ -11,3 +11,5 @@ export * from './roles/updateRole.mutation';
 export * from './task/assignUserToTask.mutation';
 export * from './authentication/confirmAccount.mutation';
 export * from './authentication/resetPassword.mutation';
+export * from './comment/createComment.mutation';
+export * from './comment/updateComment.mutation';

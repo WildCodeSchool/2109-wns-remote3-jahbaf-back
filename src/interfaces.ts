@@ -32,6 +32,20 @@ export interface CreateProjectArgs {
     projectInput: ProjectInput;
 }
 
+export interface CreateCommentArgs {
+    commentInput: {
+        taskId: string;
+        message: string;
+    }
+}
+
+export interface UpdateCommentArgs {
+    commentInput: {
+        commentId: string;
+        message: string;
+    }
+}
+
 export interface Project {
     id: string;
     name: string;
@@ -102,6 +116,13 @@ export interface TaskStatus {
     projectId: string;
     description: string;
     published?: boolean;
+}
+
+export interface Comment {
+    id: string;
+    message: string;
+    author?: User;
+    createdAt?: Date;
 }
 
 export interface CreateTaskStatusArgs {

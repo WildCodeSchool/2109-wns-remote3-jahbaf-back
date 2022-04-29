@@ -20,5 +20,7 @@ export const Mutation = `
     deleteUser(email: String!, password: String!): Void!
     confirmAccount(token: String!): String!
     resetPassword(token: String!, password: String!): String!
+    createComment(commentInput: CommentInput!): Comment!
+    updateComment(commentInput: UpdateCommentInput!): Comment!
   }
 `;
